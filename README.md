@@ -3,22 +3,26 @@
 The goal for this program is to have it compute the way to the most power for humans. 
 
 Independence
+
 interrogative sentences removed
 sentences with pronouns that can’t be resolved removed
 Questions to be handled: 
 names ex. Jacob (1) Jacob (2) same name, different people - how to differentiate? 
 
 Unification
+
 same meaning sentences into one
 abbreviations expanded
 same exact meaning words resolved. ex. can not and cannot - one must be kept and the other replaced with the one determined better. 
 unnecessary words removed 
 
 Creation/Truth
+
 Creation through Sentence Manipulation
 Creation through Logic
 
 Power Value Calculating
+
 The power value calculating function has two parameters and looks like this in Common Lisp style: 2(actor)(receiver). 
 Utilizes backwards receiver logic and forward actor logic in separate hash tables. Includes a separate hash table for if-thens without actor or receiver, a separate hash table for all if-thens, and a separate hash table for complete actor/receiver chains with power values included. 
 The function begins by searching for if-then-can/can’t data that matches the actor and receiver. For example, if the actor is Ryan Klaiber and the receiver is Ryan Klaiber, then the function searches for: If Ryan Klaiber … then Ryan Klaiber can/can’t, etc.  
@@ -41,15 +45,19 @@ Subtract # of can’ts.
 (Expansion)*Leave trail marks for every search found and for every sentence used in a manipulative search. 
 
 Sorting and Showing
+
 The sorting and showing function has one parameter and looks like this in Common Lisp style: 3(number highest-or-lowest). It sorts all of the power values and in a nice looking data table, returns all of the information for the number of entries to be shown (provided as the argument) with the highest power values. It does this by accessing the power value data for every actor-receiver-if-then and begins building a list of the sentences with the power values. Once the number of entries to be shown has been met in the list, it continues accessing the power values, but now compares that number to the lowest rated entry in the list. If the number is lower, it moves on to the next pv. If the number is higher, it removes the lowest rated entry in the list and adds the new sentence with pv to the list in its appropriate position. If the pv ties one on the list, the sentence should be positioned below the already existing entry. If the sentences pv ties the lowest rated entry, it should be added to the list even if the number of entries would then exceed the number of entries requested as an argument. If that lowest entry gets beat, all entries with that same pv get removed. 
 
 Action Completion 
+
 The action completion function has one parameter and looks like this in Common Lisp style: 4(number). It takes the ordering number assigned to the if-then-can/can’t data in the Sorted and Shown Table as an argument and writes a sentence that that action has been completed. It then sends that data to the BIP with a truth value ratio of 1/1 that cannot be altered and that uses “manager” as it’s source. 
 
 Expansions
+
 Panning for gold functions (removal of no trail mark or low pv data, data connections or data connection trail marks), directed questions from the machine, spoken language translations, physical sensing machines, physical motor performing machines, sense to sense to string conversions, other functions such as 1. future prediction, 2. action effect prediction, 3. problem solving, 4. question answering, 5. undoing data input. source specialization levels varied on multiple computers working together, better pronoun resolution
 
 Notes 
+
 @bip: past tense if-then-can/can’t requires up/downgrading, incorporates time restrictions, part/part-ofs. 
 lifting is to be used 1. @expansions: during the undoing input function, 2. @bip: when an action with parts has been completed and the parts were completed earlier and their time has not expired (a prevention for this is required in calculating the pv for the data with parts), 3. @expansions: during the panning for gold function to remove data and trail marks. Is lifting the right term for trail marks? data? power value numbers? up/downgrading? 
 @bip: action completion overlapping: for pv’s if a=5, b=4, c=3, d=2, abcd=1 and a, b, and c have been completed; if within time limits, d receives pv of abcd (in this case, pv=1). It should also gain prevention measures as noted in the lifting notes above. 
