@@ -3,12 +3,14 @@
 The goal for this program is to have it compute the way to the most power for humans. 
 
 Independence
+
 interrogative sentences removed
 sentences with pronouns that can’t be resolved removed
 Questions to be handled: 
 names ex. Jacob (1) Jacob (2) same name, different people - how to differentiate? 
 
 Unification
+
 same meaning sentences into one
 abbreviations expanded
 same exact meaning words resolved. ex. can not and cannot - one must be kept and the other replaced with the one determined better. 
