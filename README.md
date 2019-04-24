@@ -65,7 +65,7 @@ lifting is to be used 1. @expansions: during the undoing input function, 2. @bip
 PV: if panning for gold is performed, it is important that the actor and receiver remain the same. If the actor/receiver/both are changed after gold panning, important data may have been lost due to the original gold panning that may have been data or data connections in the pv calculations with the new actor/receiver combination. To prevent this and use one set of data with multiple actors/receivers, copies of data tables can be made to be used as actor/receiver specific data tables. 
 BIP: would having different hash tables, each with specific POS sentence arrangements make searches faster? 
 
-Warning: This technology could be used for selfish purposes by using a selfish actor/receiver combination in the power value calculation. Demand transparency. Do not trust governments claiming their supercomputer calculations are too complicated to understand. Each computer system should be treated like an experiment and the same results should be produced given the same code, sources, and actor/receiver combination. 
+Warning: This technology could be used for selfish purposes by using a selfish actor/receiver combination in the power value calculation. Demand transparency. Each computer system should be treated like an experiment and the same results should be produced given the same code, sources, and actor/receiver combination. 
 
 
 
