@@ -4,16 +4,16 @@ The goal for this program is to have it compute the way to the most power for hu
 
 Independence
 
-interrogative sentences removed
-sentences with pronouns that can’t be resolved removed
+interrogative sentences removed,
+sentences with pronouns that can’t be resolved removed,
 Questions to be handled: 
 names ex. Jacob (1) Jacob (2) same name, different people - how to differentiate? 
 
 Unification
 
-same meaning sentences into one
-abbreviations expanded
-same exact meaning words resolved. ex. can not and cannot - one must be kept and the other replaced with the one determined better. 
+same meaning sentences into one,
+abbreviations expanded,
+same exact meaning words resolved. ex. can not and cannot - one must be kept and the other replaced with the one determined better, 
 unnecessary words removed 
 
 Creation/Truth
@@ -65,7 +65,7 @@ lifting is to be used 1. @expansions: during the undoing input function, 2. @bip
 PV: if panning for gold is performed, it is important that the actor and receiver remain the same. If the actor/receiver/both are changed after gold panning, important data may have been lost due to the original gold panning that may have been data or data connections in the pv calculations with the new actor/receiver combination. To prevent this and use one set of data with multiple actors/receivers, copies of data tables can be made to be used as actor/receiver specific data tables. 
 BIP: would having different hash tables, each with specific POS sentence arrangements make searches faster? 
 
-Warning: This technology could be used for selfish purposes by using a selfish actor/receiver combination in the power value calculation. Demand transparency. Each computer system should be treated like an experiment and the same results should be produced given the same code, sources, and actor/receiver combination. 
+The same results should be produced given the same code, sources, and actor/receiver combination. 
 
 
 
