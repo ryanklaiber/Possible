@@ -22,7 +22,7 @@ Truth data is created/updated directly after the independence and unification fu
 
 Creation
 
-There are two methods of creation; through sentence manipulation, and through logic. Which sentences are created first must be handled correctly due to potential truth value alteration problems (e.g. if a then b, if b then c, if a and b have truth values, then b's truth value would have to be updated from the if a then b statement before b can be used to create/update c).  
+There are two methods of creation; through sentence manipulation, and through logic. Which sentences are created first must be handled correctly due to potential truth value alteration problems (e.g. if a then b, if b then c, if a and b have truth values, then b's truth value would have to be updated from the if a then b statement before b can be used to create/update c). Creation must begin with root sentences, which are sentences which  
 
 Power Value Calculating
 
