@@ -4,49 +4,46 @@ The goal for this program is to have it compute the way to the most power for hu
 
 Independence
 
-interrogative sentences removed,
-sentences with pronouns that can’t be resolved removed,
+During the independence function, interrogative sentences are removed, sentences with pronouns that can’t be resolved are removed,
 Questions to be handled: 
 names ex. Jacob (1) Jacob (2) same name, different people - how to differentiate? 
 
 Unification
 
-same meaning sentences into one,
-abbreviations expanded,
-same exact meaning words resolved. ex. can not and cannot - one must be kept and the other replaced with the one determined better, 
-unnecessary words removed, 
-sentences stored in hash tables
+Methods of unification: same meaning sentences into one, abbreviations expanded, same exact meaning words resolved. ex. can not and cannot - one must be kept and the other replaced with the one determined better, unnecessary words removed, 
+
+Storage
+
+The sentences must be stored appropriately in hash tables.
 
 Truth
 
-truth data is created/updated directly after the independence and unification functions. 
+Truth data is created/updated directly after the independence and unification functions. 
 
 Creation
 
-Creation through Sentence Manipulation,
-Creation through Logic
+There are two methods of creation; through sentence manipulation, and through logic. Which sentences are created first must be handled correctly due to potential truth value alteration problems (e.g. if a then b, if b then c, if a and b have truth values, then b's truth value would have to be updated from the if a then b statement before b can be used to create/update c).  
 
 Power Value Calculating
 
 The power value calculating function has two parameters and looks like this in Common Lisp style: 2(actor)(receiver). 
-Utilizes backwards receiver logic and forward actor logic in separate hash tables. Includes a separate hash table for if-thens without actor or receiver, a separate hash table for all if-thens, and a separate hash table for complete actor/receiver chains with power values included. 
-The function begins by searching for if-then-can/can’t data that matches the actor and receiver. For example, if the actor is Ryan Klaiber and the receiver is Ryan Klaiber, then the function searches for: If Ryan Klaiber … then Ryan Klaiber can/can’t, etc.  
-The power value calculating function uses 1. basic searches and 2. forward and backward logic and searches to search for matching data at all stages of the power value calculation. The stages of the power value calculation are as follows: 
-Search: if actors a (and/ors) then receivers can/can’t ____ (and/ors)
-If there is no match for #1, return null. 
-If there is a match for #1, search: actors can a (and/ors)
-If there is a match for #3, calculate a PV for #1. 
-If there is no match for #3, search: if actors z (and/ors) then actors can a (and/ors). 
-If there is no match for #5, return null.
-If there is a match for #5, search: actors can z (and/ors). 
-If there is a match for #7, combine with a as ordered procedure and calculate PV for #1.  
-If there is no match for # 7, loop #5 and then #7 until both are found. Replace a position variables with z position variables and search for new z position variable data during each loop. 
-For #5’s and similars in loops, search: if actors can a (and/ors) then receivers can/can’t ___ (and/ors). 
-For #7’s and similars in loops, search: if actors z (and/ors) then receivers can/can’t ___ (and/ors). 
-Search: if receivers can/cant’s (from #1, #10, and #11) then receivers can/can’t ___ (and/ors). 
-Delete overlaps. 
-Count # of cans. 
-Subtract # of can’ts.
+Utilizes backwards receiver logic and forward actor logic in separate hash tables. Includes a separate hash table for if-thens without actor or receiver, a separate hash table for all if-thens, and a separate hash table for complete actor/receiver chains with power values included. The function begins by searching for if-then-can/can’t data that matches the actor and receiver. For example, if the actor is Ryan Klaiber and the receiver is Ryan Klaiber, then the function searches for: If Ryan Klaiber … then Ryan Klaiber can/can’t, etc. The power value calculating function uses 1. basic searches and 2. forward and backward logic and searches to search for matching data at all stages of the power value calculation. The stages of the power value calculation are as follows: 
+
+1. Search: if actors a (and/ors) then receivers can/can’t ____ (and/ors)
+2. If there is no match for #1, return null. 
+3. If there is a match for #1, search: actors can a (and/ors)
+4. If there is a match for #3, calculate a PV for #1. 
+5. If there is no match for #3, search: if actors z (and/ors) then actors can a (and/ors). 
+6. If there is no match for #5, return null.
+7. If there is a match for #5, search: actors can z (and/ors). 
+8. If there is a match for #7, combine with a as ordered procedure and calculate PV for #1.  
+9. If there is no match for # 7, loop #5 and then #7 until both are found. Replace a position variables with z position variables and search for new z position variable data during each loop. 
+10. For #5’s and similars in loops, search: if actors can a (and/ors) then receivers can/can’t ___ (and/ors). 
+11. For #7’s and similars in loops, search: if actors z (and/ors) then receivers can/can’t ___ (and/ors). 
+12. Search: if receivers can/cant’s (from #1, #10, and #11) then receivers can/can’t ___ (and/ors). 
+13. Delete overlaps. 
+14. Count # of cans. 
+15. Subtract # of can’ts.
 (Expansion)*Leave trail marks for every search found and for every sentence used in a manipulative search. 
 
 Sorting and Showing
