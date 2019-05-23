@@ -1,6 +1,6 @@
 # asinow
 
-The goal for this program is to have it compute the way to the most power for humans. 
+The goal for this program is to have it compute the way to the most power for humans. The independence, unification, and truth functions are run upon input. The rest of the functions, beginning with creation are run separately when there has been deemed sufficient stored sentences in the hash tables. 
 
 Independence
 
@@ -14,11 +14,16 @@ Unification
 same meaning sentences into one,
 abbreviations expanded,
 same exact meaning words resolved. ex. can not and cannot - one must be kept and the other replaced with the one determined better, 
-unnecessary words removed 
+unnecessary words removed, 
+sentences stored in hash tables
 
-Creation/Truth
+Truth
 
-Creation through Sentence Manipulation
+truth data is created/updated directly after the independence and unification functions. 
+
+Creation
+
+Creation through Sentence Manipulation,
 Creation through Logic
 
 Power Value Calculating
