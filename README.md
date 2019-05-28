@@ -1,6 +1,6 @@
 # asinow
 
-The goal for this program is to have it compute the way to the most power for humans. The independence, unification, and truth functions are run upon input. The rest of the functions, beginning with creation are run separately when there has been deemed sufficient stored sentences in the hash tables. 
+The goal for this program is to have it compute the way to the most power for humans. The independence, unification, truth, and storage functions are run upon input. The rest of the functions, beginning with creation are run separately when there has been deemed sufficient stored sentences in the hash tables. 
 
 Independence
 
@@ -48,7 +48,7 @@ Utilizes backwards receiver logic and forward actor logic in separate hash table
 
 Sorting and Showing
 
-The sorting and showing function has one parameter and looks like this in Common Lisp style: 3(number highest-or-lowest). It sorts all of the power values and in a nice looking data table, returns all of the information for the number of entries to be shown (provided as the argument) with the highest power values. It does this by accessing the power value data for every actor-receiver-if-then and begins building a list of the sentences with the power values. Once the number of entries to be shown has been met in the list, it continues accessing the power values, but now compares that number to the lowest rated entry in the list. If the number is lower, it moves on to the next pv. If the number is higher, it removes the lowest rated entry in the list and adds the new sentence with pv to the list in its appropriate position. If the pv ties one on the list, the sentence should be positioned below the already existing entry. If the sentences pv ties the lowest rated entry, it should be added to the list even if the number of entries would then exceed the number of entries requested as an argument. If that lowest entry gets beat, all entries with that same pv get removed. 
+The sorting and showing function has one parameter and looks like this in Common Lisp style: 3(number highest-or-lowest). It sorts all of the power values and in a nice looking data table, returns all of the information for the number of entries to be shown (provided as the argument) with the highest power values. It does this by accessing the power value data for every actor-receiver-if-then and begins building a list of the sentences with the power values. Once the number of entries to be shown has been met in the list, it continues accessing the power values of other actor-receiver-if-then sentences and adds them to the list if they are higher than any already on the list. ** If the number is higher, it removes the lowest rated entry in the list and adds the new sentence with pv to the list in its appropriate position. If the pv ties one on the list, the sentence should be positioned below the already existing entry. If the sentences pv ties the lowest rated entry, it should be added to the list even if the number of entries would then exceed the number of entries requested as an argument. If that lowest entry gets beat, all entries with that same pv get removed. 
 
 Action Completion 
 
