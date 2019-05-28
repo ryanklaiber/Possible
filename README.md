@@ -12,19 +12,19 @@ Unification
 
 Methods of unification: same meaning sentences into one, abbreviations expanded, same exact meaning words resolved. ex. can not and cannot - one must be kept and the other replaced with the one determined better, unnecessary words removed, 
 
+Truth
+
+Truth data is created/updated directly after the independence and unification functions and also after each creation. 
+
 Storage
 
 The sentences must be stored appropriately in hash tables.
 
-Truth
-
-Truth data is created/updated directly after the independence and unification functions. 
-
 Creation
 
-There are two methods of creation; through sentence manipulation, and through logic. Which sentences are created first must be handled correctly due to potential truth value alteration problems (e.g. if a then b, if b then c, if a and b have truth values, then b's truth value would have to be updated from the if a then b statement before b can be used to create/update c). Creation must begin with root sentences, which are sentences which  
+Creation is through logic. Which sentences are created first must be handled correctly due to potential truth value alteration problems (e.g. if a then b, if b then c, if a and b have truth values, then b's truth value would have to be updated from the if a then b statement before b can be used to create/update c). Creation must begin with root sentences, which are sentences whose if component cannot be created from logic (e.g. in the case that there exists an if b then c, then in order to be a root sentence there could be no if a then b). After the first root sentences are used, then the 'b's' of the first root sentences are searched for to check if they are the ifs of the second level root sentences. Second level root sentences do not consider first level root sentences. This pattern continues until no more root sentences of any level can be found. All other data must be part of circular logic (I think - check on in expansions) and cannot be used in the pv calculation. Upon creation at every level, truth values are created or updated.
 
-Power Value Calculating
+Power Value (pv) Calculating
 
 The power value calculating function has two parameters and looks like this in Common Lisp style: 2(actor)(receiver). 
 Utilizes backwards receiver logic and forward actor logic in separate hash tables. Includes a separate hash table for if-thens without actor or receiver, a separate hash table for all if-thens, and a separate hash table for complete actor/receiver chains with power values included. The function begins by searching for if-then-can/can’t data that matches the actor and receiver. For example, if the actor is Ryan Klaiber and the receiver is Ryan Klaiber, then the function searches for: If Ryan Klaiber … then Ryan Klaiber can/can’t, etc. The power value calculating function uses 1. basic searches and 2. forward and backward logic and searches to search for matching data at all stages of the power value calculation. The stages of the power value calculation are as follows: 
