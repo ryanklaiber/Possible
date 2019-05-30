@@ -52,7 +52,7 @@ The sorting and showing function has one parameter and looks like this in Common
 
 Expansions
 
-Panning for gold functions (removal of no trail mark or low pv data, data connections or data connection trail marks), directed questions from the machine, spoken language translations, physical sensing machines, physical motor performing machines, sense to sense to string conversions, other functions such as 1. future prediction, 2. action effect prediction, 3. problem solving, 4. question answering, 5. undoing data input. source specialization levels varied on multiple computers working together, better pronoun resolution
+1. Panning for gold functions (removal of sentences with no trail marks), physical sensing machines, physical motor performing machines, sense to sense to string conversions, other functions such as 1. future prediction, 2. action effect prediction, 3. problem solving, 4. question answering, 5. undoing data input. source specialization levels varied on multiple computers working together, better pronoun resolution, hierarchical computation
 
 Notes 
 
