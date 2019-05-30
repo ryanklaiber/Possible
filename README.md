@@ -50,14 +50,18 @@ Sorting and Showing
 
 The sorting and showing function has one parameter and looks like this in Common Lisp style: 3(number highest-or-lowest). It sorts all of the power values and in a nice looking data table, returns all of the information for the number of entries to be shown (provided as the argument) with the highest power values. It does this by accessing the power value data for every actor-receiver-if-then and begins building a list of the sentences with the power values. Once the number of entries to be shown has been met in the list, it continues accessing the power values of other actor-receiver-if-then sentences and adds them to the list if they are higher than any already on the list. If the number is higher, it removes the lowest rated entry in the list and adds the new sentence with pv to the list in its appropriate position. If the pv ties one on the list, the sentence should be positioned below or above the already existing entry in a newly created or updated subcategory of that pv rating, with all other equally rated entries in the same subcategory. If the lowest pv rating gets beat and has multiple entries in a subcategory, all entries with that same pv get removed. 
 
+*The same results should be produced given the same code, sources, and actor/receiver combination. 
+
 Expansions
 
 1. Panning for gold functions (removal of sentences with no trail marks)
 2. internet connectivity
 3. future prediction (begins with searching all if-will sentences and checking if the if is true, proceeds similar to creation using root if-will sentences (maybe - not totally thought through).
 4. action effect prediction (based on one if, lists the then and all then statements of branching if-then sentences - if the then is a part-of a further branches if, it checks for truth of all  other parts before listing the then)
-5.problem solving
-6. question answering, 5. undoing data input. source specialization levels varied on multiple computers working together, better pronoun resolution, hierarchical computation
+5. problem solving (begins with using the problem as a then statement and searching for ifs that will produce it, then working backward...)
+6. question answering
+7. Pronouns replaced with proper nouns during the independence function (able to be done when pronoun resolution capabilities become close to 100%)
+8. hierarchical computation (running the program in separate locations with partially or completely separate input data - allows for certain locations to utilize full computing power for specialized sets of data, whereas other locations can use the results of the specialized locations as input data as less specialized locations, similar to how scientists gather information and share it, allowing for decision makers to make better decisions).   
 
 Notes 
 
@@ -68,7 +72,7 @@ lifting is to be used 1. @expansions: during the undoing input function, 2. @bip
 PV: if panning for gold is performed, it is important that the actor and receiver remain the same. If the actor/receiver/both are changed after gold panning, important data may have been lost due to the original gold panning that may have been data or data connections in the pv calculations with the new actor/receiver combination. To prevent this and use one set of data with multiple actors/receivers, copies of data tables can be made to be used as actor/receiver specific data tables. 
 BIP: would having different hash tables, each with specific POS sentence arrangements make searches faster? 
 
-The same results should be produced given the same code, sources, and actor/receiver combination. 
+
 
 
 
