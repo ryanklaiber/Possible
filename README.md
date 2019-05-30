@@ -52,9 +52,12 @@ The sorting and showing function has one parameter and looks like this in Common
 
 Expansions
 
-Panning for gold functions (removal of sentences with no trail marks), internet connectivity, future prediction (based on one if, lists the then and all then statements of branching if-then sentences (if the then is a part of a further branches if, checks for truth of other parts before listing the then). 
-
-2. action effect prediction, 3. problem solving, 4. question answering, 5. undoing data input. source specialization levels varied on multiple computers working together, better pronoun resolution, hierarchical computation
+1. Panning for gold functions (removal of sentences with no trail marks)
+2. internet connectivity
+3. future prediction (begins with searching all if-will sentences and checking if the if is true, proceeds similar to creation using root if-will sentences (maybe - not totally thought through).
+4. action effect prediction (based on one if, lists the then and all then statements of branching if-then sentences - if the then is a part-of a further branches if, it checks for truth of all  other parts before listing the then)
+5.problem solving
+6. question answering, 5. undoing data input. source specialization levels varied on multiple computers working together, better pronoun resolution, hierarchical computation
 
 Notes 
 
