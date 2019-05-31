@@ -55,13 +55,13 @@ The sorting and showing function has one parameter and looks like this in Common
 Expansions
 
 1. Panning for gold functions (removal of sentences with no trail marks)
-2. internet connectivity
+2. internet connectivity (allows the program to access the internet to obtain input data)
 3. future prediction (begins with searching all if-will sentences and checking if the if is true, proceeds similar to creation using root if-will sentences (maybe - not totally thought through).
 4. action effect prediction (based on one if, lists the then and all then statements of branching if-then sentences - if the then is a part-of a further branches if, it checks for truth of all  other parts before listing the then)
 5. problem solving (begins with using the problem as a then statement and searching for ifs that will produce it, then working backward...)
-6. question answering
+6. question answering (utilizes sentences stored after creation to answer questions. Each type of question requires different functions)
 7. Pronouns replaced with proper nouns during the independence function (able to be done when pronoun resolution capabilities become close to 100%)
-8. hierarchical computation (running the program in separate locations with partially or completely separate input data - allows for certain locations to utilize full computing power for specialized sets of data, whereas other locations can use the results of the specialized locations as input data as less specialized locations, similar to how scientists gather information and share it, allowing for decision makers to make better decisions).   
+8. hierarchical computation (running the program in separate locations with partially or completely separate input data - allows for certain locations to utilize full computing power for specialized sets of data, whereas other locations can use the results of the specialized locations as input data as less specialized locations, similar to how scientists gather information and share it, allowing decision makers to make better decisions).   
 
 Notes 
 
