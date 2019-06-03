@@ -50,7 +50,7 @@ The sorting and showing function has one parameter and looks like this in Common
 
 Expansions
 
-1. Panning for gold functions (removal of sentences with no trail marks)
+1. Panning for gold functions (removal of sentences with no trail marks). If panning for gold is performed, it is important that the actor and receiver remain the same. If the actor/receiver/both are changed after gold panning, important data may have been lost due to the original gold panning that may have been able to be used in the pv calculations with the new actor/receiver combination. To prevent this and use one set of data with multiple actors/receivers, copies of data tables can be made to be used as actor/receiver specific data tables. 
 2. internet connectivity (allows the program to access the internet to obtain input data)
 3. future prediction (begins with searching all if-will sentences and checking if the if is true, proceeds similar to creation using root if-will sentences (maybe - not totally thought through).
 4. action effect prediction (based on one if, lists the then and all then statements of branching if-then sentences - if the then is a part-of a further branches if, it checks for truth of all  other parts before listing the then)
@@ -65,8 +65,7 @@ Notes
 lifting is to be used 2. @bip: when an action with parts has been completed and the parts were completed earlier and their time has not expired (a prevention for this is required in calculating the pv for the data with parts), 3. @expansions: during the panning for gold function to remove data and trail marks. Is lifting the right term for trail marks? data? power value numbers? up/downgrading? 
 @bip: action completion overlapping: for pv’s if a=5, b=4, c=3, d=2, abcd=1 and a, b, and c have been completed; if within time limits, d receives pv of abcd (in this case, pv=1). It should also gain prevention measures as noted in the lifting notes above. 
 @bip: some actions can be completed, within the same actions completion time limit. If so, the power value may be constantly altered with passing time. Ex. Action 1 effect is 5 days, action 1 can be done again within action 1 time limit with effects, action 1 done again on day 3 of original action 1 effects, therefore, action 1 effects are felt until day 8. The pv for action 1 within those 5 days of the original action 1 effects is to be constantly increasing.  
-PV: if panning for gold is performed, it is important that the actor and receiver remain the same. If the actor/receiver/both are changed after gold panning, important data may have been lost due to the original gold panning that may have been data or data connections in the pv calculations with the new actor/receiver combination. To prevent this and use one set of data with multiple actors/receivers, copies of data tables can be made to be used as actor/receiver specific data tables. 
-BIP: would having different hash tables, each with specific POS sentence arrangements make searches faster? 
+
 
 
 
