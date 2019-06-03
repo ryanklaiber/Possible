@@ -1,16 +1,16 @@
 # asinow
 
-The goal for this program is to have it compute the way to the most power for humans. The independence, unification, truth, and storage functions are run upon input. The rest of the functions, beginning with creation are run separately when there has been deemed sufficient stored sentences in the hash tables. 
+The goal for this program is to have it compute the way to the most power for humans. Basic input processing functions are run upon input. The rest of the functions, beginning with creation, are run separately when there has been deemed sufficient stored sentences in the hash tables. 
 
-Independence
+Basic Input Processing (BIP)
 
-1. Interrogative sentences are removed 
-2. sentences with pronouns that can’t be resolved are removed
-3. Multiple same name proper nouns are to be renamed including a number. Ex. Ryan Klaiber (1), Ryan Klaiber (2)... If there are no stored same name proper nouns discovered during the independence function, the proper noun is not renamed. If there is at least one stored same name proper noun, 
-
-Unification
-
-Methods of unification: same meaning sentences into one, abbreviations expanded, same exact meaning words resolved. ex. can not and cannot - one must be kept and the other replaced with the one determined better, unnecessary words removed, 
+1. (Purpose: Independence) Interrogative sentences are removed. 
+2. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed.
+3. (Purpose: Unification) Same meaning sentences are conformed into one.
+4. (Purpose: Unification) Abbreviations are expanded.
+5. (Purpose: Unification) Same exact meaning words resolved. Ex. can not and cannot - one must be kept and the other replaced with the one determined to be preferred.
+6. (Purpose: Unification) Unnecessary words are removed.
+7. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number. Ex. Ryan Klaiber (1), Ryan Klaiber (2)... If there are no stored same name proper nouns discovered during the independence function, the proper noun is not renamed. If there is at least one stored same name proper noun, 
 
 Storage
 
