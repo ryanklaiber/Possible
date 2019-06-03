@@ -10,7 +10,7 @@ Basic Input Processing (BIP)
 4. (Purpose: Unification) Abbreviations are expanded.
 5. (Purpose: Unification) Same exact meaning words resolved. Ex. can not and cannot - one must be kept and the other replaced with the one determined to be preferred.
 6. (Purpose: Unification) Unnecessary words are removed.
-7. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number. Ex. Ryan Klaiber (1), Ryan Klaiber (2)... If there are no stored same name proper nouns discovered during the independence function, the proper noun is not renamed. If there is at least one stored same name proper noun, 
+7. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number. Ex. Ryan Klaiber (1), Ryan Klaiber (2)... If there are no stored same name proper nouns discovered during the independence function, the proper noun is not renamed. If there is at least one stored same name proper noun, sentences from the current input source including the proper noun in question must be compared to sentences previously stored including the proper noun in question. If a sufficiently deemed percent of the sentences are contradictory, the proper nouns are not a match. If no matches are found, the proper noun is renamed with the current highest number of the proper noun + 1. 
 
 Storage
 
