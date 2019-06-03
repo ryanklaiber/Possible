@@ -4,21 +4,17 @@ The goal for this program is to have it compute the way to the most power for hu
 
 Independence
 
-During the independence function, interrogative sentences are removed, sentences with pronouns that can’t be resolved are removed,
-Questions to be handled: 
-names ex. Jacob (1) Jacob (2) same name, different people - how to differentiate? 
+1. Interrogative sentences are removed 
+2. sentences with pronouns that can’t be resolved are removed
+3. Multiple same name proper nouns are to be renamed including a number. Ex. Ryan Klaiber (1), Ryan Klaiber (2)... If there are no stored same name proper nouns discovered during the independence function, the proper noun is not renamed. If there is at least one stored same name proper noun, 
 
 Unification
 
 Methods of unification: same meaning sentences into one, abbreviations expanded, same exact meaning words resolved. ex. can not and cannot - one must be kept and the other replaced with the one determined better, unnecessary words removed, 
 
-Truth
-
-Truth data is created/updated directly after the independence and unification functions and also after each creation. 
-
 Storage
 
-The sentences must be stored appropriately in hash tables.
+The sentences must be stored appropriately in hash tables. Truth data is created/updated during storage, after the independence and unification functions.  
 
 Creation
 
