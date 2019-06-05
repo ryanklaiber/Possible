@@ -64,7 +64,7 @@ Notes
 @bip: past tense if-then-can/can’t requires up/downgrading, incorporates time restrictions, part/part-ofs. 
 lifting is to be used 2. @bip: when an action with parts has been completed and the parts were completed earlier and their time has not expired (a prevention for this is required in calculating the pv for the data with parts), 3. @expansions: during the panning for gold function to remove data and trail marks. Is lifting the right term for trail marks? data? power value numbers? up/downgrading? 
 @bip: action completion overlapping: for pv’s if a=5, b=4, c=3, d=2, abcd=1 and a, b, and c have been completed; if within time limits, d receives pv of abcd (in this case, pv=1). It should also gain prevention measures as noted in the lifting notes above. 
-@bip: some actions can be completed, within the same actions completion time limit. If so, the power value may be constantly altered with passing time. Ex. Action 1 effect is 5 days, action 1 can be done again within action 1 time limit with effects, action 1 done again on day 3 of original action 1 effects, therefore, action 1 effects are felt until day 8. The pv for action 1 within those 5 days of the original action 1 effects is to be constantly increasing.  
+@pv: some actions can be completed, within the same actions completion time limit. If so, the power value may be constantly altered with passing time. Ex. Action 1 pv increase is 5 days, and action 1 can be done again within those 5 days. If action 1 is done again on day 3 of the 5 days, the action 1 pv increase time is extended until day 8. The pv for action 1 during those 5 days is to be constantly increasing.  
 
 
 
