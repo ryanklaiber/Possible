@@ -1,8 +1,12 @@
 # asinow
 
+for full description format (do for every rule): 
+
+rule, then reason if necessary, then example if necessary
+
 The goal for this program is to have it compute the way to the most power for humans. Basic input processing functions are run upon input. The rest of the functions, beginning with creation, are run separately when there has been deemed sufficient stored sentences in the hash tables. 
 
-Basic Input Processing (BIP)
+Basic Input Processing (Runs on Input)
 
 1. (Purpose: Independence) Interrogative sentences are removed. 
 2. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed.
@@ -10,15 +14,19 @@ Basic Input Processing (BIP)
 4. (Purpose: Unification) Abbreviations are expanded.
 5. (Purpose: Unification) Same exact meaning words resolved. Ex. can not and cannot - one must be kept and the other replaced with the one determined to be preferred.
 6. (Purpose: Unification) Unnecessary words are removed.
-7. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number. Ex. Ryan Klaiber (1), Ryan Klaiber (2)... If there are no stored same name proper nouns discovered during the independence function, the proper noun is not renamed. If there is at least one stored same name proper noun, sentences from the current input source including the proper noun in question must be compared to sentences previously stored including the proper noun in question. If a sufficiently deemed percent of the sentences are contradictory, the proper nouns are not a match. If no matches are found, the proper noun is renamed with the current highest number of the proper noun + 1. 
-
-Storage
-
-The sentences must be stored appropriately in hash tables. Truth data is created/updated during storage, after the independence and unification functions.  
+7. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number. Ex. Ryan Klaiber (1), Ryan Klaiber (2)... If there are no stored same name proper nouns discovered during the independence function, the proper noun is not renamed. If there is at least one stored same name proper noun, sentences from the current input source including the proper noun in question must be compared to sentences previously stored from other sources that include the proper noun in question. If a sufficiently deemed percent of the sentences are contradictory, the proper nouns are not a match. If no matches are found, the proper noun is renamed with the current highest number of the proper noun + 1.  
+8. Contradictory present tense sentences must be given some sort of preference based on source date. 
+9. The sentences must be stored appropriately in hash tables. Truth data is created/updated during storage. 
 
 Creation
 
-Creation is through logic. Which sentences are created first must be handled correctly due to potential truth value alteration problems (e.g. if a then b, if b then c, if a and b have truth values, then b's truth value would have to be updated from the if a then b statement before b can be used to create/update c). Creation must begin with root sentences, which are sentences whose if component cannot be created from logic (e.g. in the case that there exists an if b then c, then in order to be a root sentence there could be no if a then b). After the first root sentences are used, then the 'b's' of the first root sentences are searched for to check if they are the ifs of the second level root sentences. Second level root sentences do not consider first level root sentences. This pattern continues until no more root sentences of any level can be found. All other data must be part of circular logic (I think - check on in expansions) and cannot be used in the pv calculation. Upon creation at every level, truth values are created or updated.
+Creation is through logic. Which sentences are created first must be handled correctly due to potential truth value alteration problems (e.g. if a then b, if b then c, if a and b have truth values, then b's truth value would have to be updated from the if a then b statement before b can be used to create/update c). Creation must begin with root sentences, which are sentences whose if component cannot be created from logic (e.g. in the case that there exists an if b then c, then in order to be a root sentence there could be no if a then b). After the first root sentences are used, then the 'b's' of the first root sentences are searched for to check if they are the ifs of the second level root sentences. Second level root sentences do not consider first level root sentences. This pattern continues until no more root sentences of any level can be found. All other data must be part of circular logic (I think - check on in expansions) and cannot be used in the pv calculation. Upon creation at every level, truth values are created or updated. When checking 'if a then b' by checking for 'a', 'a is b' and 'b is a' sentences must be checked. For all 'vara is varb' should be reversed with same truth value to 'varb is vara' if vara and varb are both proper nouns. If 'a is b' exists, then all sentences about b are also true about a (with their respective truth values). This includes any sentences where b is found in any part of the sentence.  
+
+For if abcd then e: if a, b, and c have been completed within their respective time limits, a new sentence if created. If d then e replaces if abcd then e. The truth values for the completions of a, b, and c, as well as the if abcd then e truth value are multiplied together to get the if d then e truth value. 
+If at any time during creation there exists multiple sentences that are the same, but have different truth values, the one with the higher truth value is the only one kept. Ex: 'if a then b' (tv = 50%) and 'if a then b' (tv = 40%). The second would be erased. 
+
+The time used for time involving creations is to be the time at the start of the creation function.
+*Fading into oblivion expansion to be used during creation
 
 Power Value (pv) Calculating
 
@@ -41,7 +49,7 @@ Utilizes backwards receiver logic and forward actor logic in separate hash table
 14. Count # of cans. 
 15. Subtract # of can’ts.
 (Expansion)*Leave trail marks for every search found and for every sentence used in a manipulative search. 
-
+ 
 Sorting and Showing
 
 The sorting and showing function has one parameter and looks like this in Common Lisp style: 3(number highest-or-lowest). It sorts all of the power values and in a nice looking data table, returns all of the information for the number of entries to be shown (provided as the argument) with the highest power values. It does this by accessing the power value data for every actor-receiver-if-then and begins building a list of the sentences with the power values. Once the number of entries to be shown has been met in the list, it continues accessing the power values of other actor-receiver-if-then sentences and adds them to the list if they are higher than any already on the list. If the number is higher, it removes the lowest rated entry in the list and adds the new sentence with pv to the list in its appropriate position. If the pv ties one on the list, the sentence should be positioned below or above the already existing entry in a newly created or updated subcategory of that pv rating, with all other equally rated entries in the same subcategory. If the lowest pv rating gets beat and has multiple entries in a subcategory, all entries with that same pv get removed. 
@@ -57,14 +65,10 @@ Expansions
 5. problem solving (begins with using the problem as a then statement and searching for ifs that will produce it, then working backward...)
 6. question answering (utilizes sentences stored after creation to answer questions. Each type of question requires different functions)
 7. Pronouns replaced with proper nouns during the independence function (able to be done when pronoun resolution capabilities become close to 100%)
-8. hierarchical computation (running the program in separate locations with partially or completely separate input data - allows for certain locations to utilize full computing power for specialized sets of data, whereas other locations can use the results of the specialized locations as input data as less specialized locations, similar to how scientists gather information and share it, allowing decision makers to make better decisions).   
+8. hierarchical computation (running the program in separate locations with partially or completely separate input data - allows for certain locations to utilize full computing power for specialized sets of data, whereas other locations can use the results of the specialized locations as input data as less specialized locations, similar to how scientists gather information and share it, allowing decision makers to make better decisions).
+9. Fading into oblivion - when the truth value of a sentence reaches a predetermined very small number, the sentence with that truth value attached to it is erased so that logic utilizing it does not proceed. 
 
-Notes 
 
-@bip: past tense if-then-can/can’t requires up/downgrading, incorporates time restrictions, part/part-ofs. 
-lifting is to be used 2. @bip: when an action with parts has been completed and the parts were completed earlier and their time has not expired (a prevention for this is required in calculating the pv for the data with parts), 3. @expansions: during the panning for gold function to remove data and trail marks. Is lifting the right term for trail marks? data? power value numbers? up/downgrading? 
-@bip: action completion overlapping: for pv’s if a=5, b=4, c=3, d=2, abcd=1 and a, b, and c have been completed; if within time limits, d receives pv of abcd (in this case, pv=1). It should also gain prevention measures as noted in the lifting notes above. 
-@pv: some actions can be completed, within the same actions completion time limit. If so, the power value may be constantly altered with passing time. Ex. Action 1 pv increase is 5 days, and action 1 can be done again within those 5 days. If action 1 is done again on day 3 of the 5 days, the action 1 pv increase time is extended until day 8. The pv for action 1 during those 5 days is to be constantly increasing.  
 
 
 
