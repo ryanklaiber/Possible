@@ -1,17 +1,15 @@
 # asinow
 
-for full description format (do for every rule): 
-
-rule, then reason if necessary, then example if necessary
-
 The goal for this program is to have it compute the way to the most power for humans. Basic input processing functions are run upon input. The rest of the functions, beginning with creation, are run separately when there has been deemed sufficient stored sentences in the hash tables. 
 
 Basic Input Processing (Runs on Input)
 
-Purpose: Independence: 
-Purpose: Unification: Different sentences that carry the same information are conformed into the same sentence.
+Terms:
+1. Purpose: Independence: 
+2. Purpose: Unification: Different sentences that carry the same information are conformed into the same sentence.
 -Having different sentences that carry the same information being conformed into the same sentence is very important for many aspects of this algorithm including truth value calculating, creation, and power value calculating. 
 
+Steps: 
 1. (Purpose: Independence) Interrogative sentences are removed. 
 -Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm. 
 2. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed. 
