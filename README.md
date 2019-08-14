@@ -8,24 +8,26 @@ The goal for this program is to have it compute the way to the most power for hu
 
 Basic Input Processing (Runs on Input)
 
+Purpose: Independence: 
+Purpose: Unification: Different sentences that carry the same information are conformed into the same sentence.
+-Having different sentences that carry the same information being conformed into the same sentence is very important for many aspects of this algorithm including truth value calculating, creation, and power value calculating. 
+
 1. (Purpose: Independence) Interrogative sentences are removed. 
 -Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm. 
 2. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed. 
 -Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accuratie, then it can be incorporated into this algorithm.  
-3-6. (Purpose: Unification) Different sentences that carry the same information are conformed into the same sentence.
--Having different sentences that carry the same information being conformed into the same sentence is very important for many aspects of this algorithm including truth value calculating, creation, and power value calculating.  
-3. (Purpose: Unification) Same meaning sentences are conformed into one.
--Ex. 
-4. (Purpose: Unification) Abbreviations with multiple expansions are expanded.
--Ex. 'GM' becomes 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm expansion 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source'). If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. 
-5. (Purpose: Unification) Same exact meaning words resolved. Ex. can not and cannot - one must be kept and the other replaced with the one determined to be preferred.
-6. (Purpose: Unification) Unnecessary words are removed.
+3. (Purpose: Unification) Abbreviations with multiple expansions are expanded.
+-Ex. 'GM' becomes 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source').
+4. (Purpose: Unification) Same exact meaning words, word phrase combinations, and phrases are resolved. Ex. can not and cannot - one must be kept and the other replaced with the one determined to be preferred.
+5. (Purpose: Unification) Unnecessary words are removed.
 -Ex. 'Great white sharks can really swim fast' becomes 'Great white sharks can swim fast'. 
-7. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number. Ex. Ryan Klaiber (1), Ryan Klaiber (2)... If there are no stored same name proper nouns discovered during the independence function, the proper noun is not renamed. If there is at least one stored same name proper noun, sentences from the current input source including the proper noun in question must be compared to sentences previously stored from other sources that include the proper noun in question. If a sufficiently deemed percent of the sentences are contradictory, the proper nouns are not a match. If no matches are found, the proper noun is renamed with the current highest number of the proper noun + 1.  
-8. Contradictory present tense sentences must be given some sort of preference based on source date. 
-9. The sentences must be stored appropriately in hash tables. Truth data is created/updated during storage. 
+6. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number. Ex. Ryan Klaiber (1), Ryan Klaiber (2)... If there are no stored same name proper nouns discovered during the independence function, the proper noun is not renamed. If there is at least one stored same name proper noun, sentences from the current input source including the proper noun in question must be compared to sentences previously stored from other sources that include the proper noun in question. If a sufficiently deemed percent of the sentences are contradictory, the proper nouns are not a match. If no matches are found, the proper noun is renamed with the current highest number of the proper noun + 1.  
+7. Contradictory present tense sentences must be given some sort of preference based on source date. 
+8. The sentences must be stored appropriately in hash tables. Truth data is created/updated during storage. 
 
 Creation
+
+(add to creation - active voice sentences create passive voice sentences and vice versa)
 
 Creation is through logic. Which sentences are created first must be handled correctly due to potential truth value alteration problems (e.g. if a then b, if b then c, if a and b have truth values, then b's truth value would have to be updated from the if a then b statement before b can be used to create/update c). Creation must begin with root sentences, which are sentences whose if component cannot be created from logic (e.g. in the case that there exists an if b then c, then in order to be a root sentence there could be no if a then b). After the first root sentences are used, then the 'b's' of the first root sentences are searched for to check if they are the ifs of the second level root sentences. Second level root sentences do not consider first level root sentences. This pattern continues until no more root sentences of any level can be found. All other data must be part of circular logic (I think - check on in expansions) and cannot be used in the pv calculation. Upon creation at every level, truth values are created or updated. When checking 'if a then b' by checking for 'a', 'a is b' and 'b is a' sentences must be checked. For all 'vara is varb' should be reversed with same truth value to 'varb is vara' if vara and varb are both proper nouns. If 'a is b' exists, then all sentences about b are also true about a (with their respective truth values). This includes any sentences where b is found in any part of the sentence.  
 
