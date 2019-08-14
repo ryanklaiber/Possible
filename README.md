@@ -12,7 +12,7 @@ Basic Input Processing (Runs on Input)
 -Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm. 
 2. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed. 
 -Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accuratie, then it can be incorporated into this algorithm.  
-3-6 (Purpose: Unification) Different sentences that carry the same information are conformed into the same sentence.
+3-6. (Purpose: Unification) Different sentences that carry the same information are conformed into the same sentence.
 -Having different sentences that carry the same information being conformed into the same sentence is very important for many aspects of this algorithm including truth value calculating, creation, and power value calculating.  
 3. (Purpose: Unification) Same meaning sentences are conformed into one.
 -Ex. 
