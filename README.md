@@ -6,28 +6,41 @@ Basic Input Processing (Runs on Input)
 
 Terms:
 1. (Purpose: Independence) Making sentences independent in this algorithm means making them so that the information held within them can be fully understood without needing the information within any other sentences. 
+
 2. (Purpose: Unification) Unificaiton in this algorithm is taking different sentences that carry the same information and conforming them into the same sentence. Doing this is beneficial to truth value calculating, creation, and power value calculating. 
 
 Steps: 
 1. (Purpose: Lisp Formatting) Every sentence needs to be turned into a list of words.
 
-1.1. As a string, periods and exclamation points and their following space need to be replaced with only a period. Ex. 'Dogs can bark! They really can.' becomes 'Dogs can bark.They really can.' 
-1.2. Question marks and their following spaces need to be replaced with a question mark followed by a period. Ex. 'Can dogs bark? They really can.' becomes 'Can dogs bark?.They really can.' This will allow for their later removal.  
-1.3. Periods need to be replaced with a closed parentheses followed an open parentheses. Ex. 'Dogs can bark.They really can.' becomes 'Dogs can bark)(They really can)('
-1.4. Two open parentheses need to be added to the beginning of the source, the open parentheses at the end of the source needs to be removed and a closed parentheses added in it's place. Ex. 'Dogs can bark)(They really can)(' becomes '((Dogs can bark)(They really can))'.  
+1a. As a string, periods and exclamation points and their following space need to be replaced with only a period. Ex. 'Dogs can bark! They really can.' becomes 'Dogs can bark.They really can.' 
+
+1b. Question marks and their following spaces need to be replaced with a question mark followed by a period. Ex. 'Can dogs bark? They really can.' becomes 'Can dogs bark?.They really can.' This will allow for their later removal.  
+
+1c. Periods need to be replaced with a closed parentheses followed an open parentheses. Ex. 'Dogs can bark.They really can.' becomes 'Dogs can bark)(They really can)('
+
+1d. Two open parentheses need to be added to the beginning of the source, the open parentheses at the end of the source needs to be removed and a closed parentheses added in it's place. Ex. 'Dogs can bark)(They really can)(' becomes '((Dogs can bark)(They really can))'.  
+
 2. (Purpose: Independence) Interrogative sentences are removed. 
 -Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm. 
+
 3. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed. 
 -Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accuratie, then it can be incorporated into this algorithm.  
+
 4. (Purpose: Unification) Same meaning sentences with different sentence constuctions are conformed into the same sentence. 
 -Part of this includes all passive voice sentences being converted into active voice sentences. Ex. 'Bones can be chewed on by dogs' becomes 'Dogs can chew on bones'. 
+
 5. (Purpose: Unification) Abbreviations with multiple expansions are expanded.
 -Ex. 'GM' becomes 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source').
+
 6. (Purpose: Unification) Same exact meaning words, word phrase combinations, and phrases are resolved. Ex. can not and cannot - one must be kept and the other replaced with the one determined to be preferred.
+
 7. (Purpose: Unification) Unnecessary words are removed.
 -Ex. 'Great white sharks can really swim fast' becomes 'Great white sharks can swim fast'. 
+
 8. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number. Ex. Ryan Klaiber (1), Ryan Klaiber (2)... If there are no stored same name proper nouns discovered during the independence function, the proper noun is not renamed. If there is at least one stored same name proper noun, sentences from the current input source including the proper noun in question must be compared to sentences previously stored from other sources that include the proper noun in question. If a sufficiently deemed percent of the sentences are contradictory, the proper nouns are not a match. If no matches are found, the proper noun is renamed with the current highest number of the proper noun + 1.  
+
 9. Contradictory present tense sentences must be given some sort of preference based on source date. 
+
 10. The sentences must be stored appropriately in hash tables. Truth data is created/updated during storage. 
 
 Creation
