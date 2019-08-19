@@ -18,23 +18,27 @@ Steps:
 
 1c. Periods need to be replaced with a closed parentheses followed an open parentheses. Ex. 'Dogs can bark.They really can.' becomes 'Dogs can bark)(They really can)('
 
-1d. Two open parentheses need to be added to the beginning of the source, the open parentheses at the end of the source needs to be removed and a closed parentheses added in it's place. Ex. 'Dogs can bark)(They really can)(' becomes '((Dogs can bark)(They really can))'.  
+1d. Two open parentheses need to be added to the beginning of the source, the open parentheses at the end of the source needs to be removed and a closed parentheses added in it's place, and the string needs to be completely converted into a list. Ex. 'Dogs can bark)(They really can)(' becomes ((Dogs can bark)(They really can)).  
 
 2. (Purpose: Independence) Interrogative sentences are removed. 
 -Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm. 
 
-2a. The last character of every list will be checked for a question mark character. If one is found, that list will be removed. Ex. '((Dogs bark)(Do they?)(They do))' becomes '((Dogs bark)(They do))'.
+2a. The last character of every list will be checked for a question mark character. If one is found, that list will be removed. Ex. ((Dogs bark)(Do they bark?)(They do bark)) becomes ((Dogs bark)(They do bark)).
 
 3. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed. 
--Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accuratie, then it can be incorporated into this algorithm.  
+-Pronoun resolution is the process of matching a pronoun with the noun it is subsituting for. Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accurate, then it can be incorporated into this algorithm.  
 
-3a. Every list will be checked for any pronouns. If any pronoun is found within the list, the list will be removed. Ex. '((Dogs bark)(They do))' becomes '((Dogs bark))'.
+3a. Every list will be checked for any pronouns. If any pronoun is found within the list, the list will be removed. Ex. ((Dogs bark)(They do bark)) becomes ((Dogs bark)).
 
 4. (Purpose: Unification) Same meaning sentences with different sentence constuctions are conformed into the same sentence. 
--Part of this includes all passive voice sentences being converted into active voice sentences. Ex. 'Bones can be chewed on by dogs' becomes 'Dogs can chew on bones'. 
+-Part of this includes all passive voice sentences being converted into active voice sentences. Ex. (Bones can be chewed on by dogs) becomes (Dogs can chew on bones). 
 
-5. (Purpose: Unification) Abbreviations with multiple expansions are expanded.
--Ex. 'GM' becomes 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source').
+5. (Purpose: Unification) Abbreviations are expanded.
+-Abbreviations need to be either expanded or expansions need to be abbreviated for unification purposes. Abbreviations in this algorithm will be expanded due to the presence of abbreviations with multiple different expansions. Ex. 'GM' can expand to 'general manager' or 'General Motors'. Abbreviations mostly include acronyms, contractions, initial abbreviations, and syllabic abbreviations. Without unification of abbreviations (NASA has spaceships) and (If The National Aeronautics and Space Administration has spaceships, then people can go into space) would not conclude that (people can go into space) during creation. Additionally, if the two lists (NASA has spaceships) and (The National Aeronautics and Space Administration) were stored, they would each have truth values of 1/1 instead of 2/1 for both if the lists were unified. Power valu
+
+5a. Abbreviations with only 
+
+5b. Abbreviations with multiple expansions are expanded. An example of an abbreviation with multipole expansions is 'GM' which can expand to 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source').
 
 6. (Purpose: Unification) Same exact meaning words, word phrase combinations, and phrases are resolved. Ex. can not and cannot - one must be kept and the other replaced with the one determined to be preferred.
 
