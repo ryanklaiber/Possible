@@ -23,8 +23,12 @@ Steps:
 2. (Purpose: Independence) Interrogative sentences are removed. 
 -Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm. 
 
+2a. The last character of every list will be checked for a question mark character. If one is found, that list will be removed. Ex. '((Dogs bark)(Do they?)(They do))' becomes '((Dogs bark)(They do))'.
+
 3. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed. 
 -Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accuratie, then it can be incorporated into this algorithm.  
+
+3a. Every list will be checked for any pronouns. If any pronoun is found within the list, the list will be removed. Ex. '((Dogs bark)(They do))' becomes '((Dogs bark))'.
 
 4. (Purpose: Unification) Same meaning sentences with different sentence constuctions are conformed into the same sentence. 
 -Part of this includes all passive voice sentences being converted into active voice sentences. Ex. 'Bones can be chewed on by dogs' becomes 'Dogs can chew on bones'. 
