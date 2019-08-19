@@ -36,7 +36,7 @@ Steps:
 5. (Purpose: Unification) Abbreviations are expanded.
 -Abbreviations need to be either expanded or expansions need to be abbreviated for unification purposes. Abbreviations in this algorithm will be expanded due to the presence of abbreviations with multiple different expansions. Ex. 'GM' can expand to 'general manager' or 'General Motors'. Abbreviations mostly include acronyms, contractions, initial abbreviations, and syllabic abbreviations. Without unification of abbreviations (NASA has spaceships) and (If The National Aeronautics and Space Administration has spaceships, then people can go into space) would not conclude that (people can go into space) during creation. Additionally, if the two lists (NASA has spaceships) and (The National Aeronautics and Space Administration) were stored, they would each have truth values of 1/1 instead of 2/1 for both if the lists were unified. Power valu
 
-5a. Abbreviations with only 
+5a. Abbreviations with only one expansion are expanded.  
 
 5b. Abbreviations with multiple expansions are expanded. An example of an abbreviation with multipole expansions is 'GM' which can expand to 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source').
 
