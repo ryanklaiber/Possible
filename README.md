@@ -10,10 +10,10 @@ Terms:
 
 Steps: 
 1. (Purpose: Lisp Formatting) Every sentence needs to be turned into a list of words.
-1a. As a string, periods and exclamation points and their following space need to be replaced with only a period. Ex. 'Dogs can bark! They really can.' becomes 'Dogs can bark.They really can.' 
-1b. Question marks and their following spaces need to be replaced with a question mark followed by a period. Ex. 'Can dogs bark? They really can.' becomes 'Can dogs bark?.They really can.' This will allow for their later removal.  
-1c. Periods need to be replaced with a closed parentheses followed an open parentheses. Ex. 'Dogs can bark.They really can.' becomes 'Dogs can bark)(They really can)('
-1d. Two open parentheses need to be added to the beginning of the source, the open parentheses at the end of the source needs to be removed and a closed parentheses added in it's place. Ex. 'Dogs can bark)(They really can)(' becomes '((Dogs can bark)(They really can))'.  
+1.1. As a string, periods and exclamation points and their following space need to be replaced with only a period. Ex. 'Dogs can bark! They really can.' becomes 'Dogs can bark.They really can.' 
+1.2. Question marks and their following spaces need to be replaced with a question mark followed by a period. Ex. 'Can dogs bark? They really can.' becomes 'Can dogs bark?.They really can.' This will allow for their later removal.  
+1.3. Periods need to be replaced with a closed parentheses followed an open parentheses. Ex. 'Dogs can bark.They really can.' becomes 'Dogs can bark)(They really can)('
+1.4. Two open parentheses need to be added to the beginning of the source, the open parentheses at the end of the source needs to be removed and a closed parentheses added in it's place. Ex. 'Dogs can bark)(They really can)(' becomes '((Dogs can bark)(They really can))'.  
 2. (Purpose: Independence) Interrogative sentences are removed. 
 -Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm. 
 3. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed. 
