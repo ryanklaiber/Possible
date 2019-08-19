@@ -10,6 +10,7 @@ Terms:
 
 Steps: 
 1. (Purpose: Lisp Formatting) Every sentence needs to be turned into a list of words.
+
 1.1. As a string, periods and exclamation points and their following space need to be replaced with only a period. Ex. 'Dogs can bark! They really can.' becomes 'Dogs can bark.They really can.' 
 1.2. Question marks and their following spaces need to be replaced with a question mark followed by a period. Ex. 'Can dogs bark? They really can.' becomes 'Can dogs bark?.They really can.' This will allow for their later removal.  
 1.3. Periods need to be replaced with a closed parentheses followed an open parentheses. Ex. 'Dogs can bark.They really can.' becomes 'Dogs can bark)(They really can)('
