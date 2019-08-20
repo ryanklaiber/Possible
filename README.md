@@ -1,6 +1,6 @@
 # asinow
 
-The goal for this program is to have it compute the way to the most power for humans. Basic input processing functions are run upon input. The rest of the functions, beginning with creation, are run separately when there has been deemed sufficient stored sentences in the hash tables. 
+The goal for this program is to have it compute the way to the most power for humans. Basic input processing (BIP) functions are run upon input. The rest of the functions, beginning with creation, are run separately when there has been deemed sufficient stored sentences in the hash tables. 
 
 
 Basic Input Processing (Runs on Input)
@@ -16,7 +16,8 @@ Steps:
 
 1a. As a string, periods and exclamation points and their following space need to be replaced with only a period. Ex. 'Dogs can bark! They really can.' becomes 'Dogs can bark.They really can.' 
 
-1b. Question marks and their following spaces need to be replaced with a question mark followed by a period. Ex. 'Can dogs bark? They really can.' becomes 'Can dogs bark?.They really can.' This will allow for their later removal.  
+1b. Question marks and their following spaces need to be replaced with a question mark followed by a period. Ex.\
+'Can dogs bark? They really can.' becomes 'Can dogs bark?.They really can.' This will allow for their later removal.  
 
 1c. Periods need to be replaced with a closed parentheses followed an open parentheses. Ex. 'Dogs can bark.They really can.' becomes 'Dogs can bark)(They really can)('
 
@@ -49,7 +50,18 @@ Steps:
 -Ex. (Great white sharks can really swim fast) becomes (Great white sharks can swim fast). 
 
 8. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number (Ex. Ryan Klaiber (1), Ryan Klaiber (2)) 
-- When processing a source, every sentence with a proper noun is pushed to a separate list after being formatting in previous steps. Matches for these sentences are then searched for using sentences previously fully formatted and stored. the proper noun is not renamed. If there is at least one stored same name proper noun, sentences from the current input source including the proper noun in question must be compared to sentences previously stored from other sources that include the proper noun in question. If a sufficiently deemed percent of the sentences are contradictory, the proper nouns are not a match. If no matches are found, the proper noun is renamed with the current highest number of the proper noun + 1.  
+
+8a. Every sentence with a proper noun is pushed to a separate list after being formatted in previous steps (steps 1-7). This list will be referred to as the proper nouns sentence list.
+
+8b. (proper noun contradictions within the source) Matches and contradictions for each sentence in the proper nouns sentence list are searched for, searching within the proper nouns sentence list itself. If a sufficiently deemed percent of the sentences are contradictory, the proper nouns are renamed. Ex. Ryan Klaiber (1), Ryan Klaiber (2). An unlimited number of different proper noun names can be given within a single source. All of the sentences that include the same proper noun will make up a proper noun group. 
+
+8c. (proper noun group matches within the hash table) Matches and contradictions for each proper noun group from the proper nouns sentence list are searched for, searching within the hash table of sentences previously fully formatted and stored. Each proper noun group will take the name of any other previosly stored proper noun group if a sufficiently deemed percent of the sentences within that stored proper noun group are matching.
+
+8d. (proper noun group contradictions within the hash table) If a sufficiently deemed percent of source proper noun group sentences are contradictory to all other stored proper noun group sentences, the proper nouns in that source proper noun group are renamed with the current highest number of the proper noun + 1. 
+
+8e. (no contradictions within the source and hash table and no matches within the hash table) If no contradictions are found while searching within the proper nouns sentence list itself, and no matches or contradictions are found while searching within the hash table of sentences previously fully formatted and stored, the proper noun is not renamed. 
+
+8f. At the end of step 8, all sentences in the proper nouns sentence list are pushed back to the source BIP list. 
 
 9. The sentences must be stored appropriately in hash tables. Truth data is created/updated during storage. 
 -The subject is the hash entry key and the predicate is the entry. Source date/time, and other provided date/time provided is stored at the end of the sentence as a separate list along with truth values. This separate list is to exist at the end of all stored sentences and the order of all values in this separate list is to be the same for all stored sentences. 1 is added to any matching entry truth value numerator, contradictory entry truth value denominator. If the entry is unique, a truth value of 1/1 is created. A unique entry input on 8/19/2019 as 'Yesterday after lunch WHHS students were excited about studying.' would have an entry key as (Westchester Hebrew High School students) and a possible entry order as ((were excited about studying)(1/1 8.19.2019 8.18.2019 (after lunch))). As variables, the entry key would be (subject) and the entry might be ((predicate)(truth-value source-date/time sentence-event-date/time (relative-date/time))). 
