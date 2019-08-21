@@ -1,6 +1,6 @@
 # asinow
 
-The goal for this program is to have it compute the way to the most power for humans. Basic input processing (BIP) functions are run upon input. The rest of the functions, beginning with creation, are run separately when there has been deemed sufficient stored sentences in the hash tables. Sources to be input must be non-fiction literature.
+The goal for this program is to have it compute the way to the most power for humans. Basic input processing (BIP) functions are run upon input. The rest of the functions (creation, power value calculating, and sorting) are run separately when there has been deemed sufficient stored sentences in the hash tables. Sources to be input must be non-fiction literature.
 
 -The goal of humans, beknownst to them or not, is to get more power. This may not always be obvious because often times short term powers are rejected in favor of longer term powers. All living creatures have evolved that way. Power is one's abilities, whether or not they use those abilities is up to each individual. Each individual perceives power differently to some extent. As it is our primary evolved goal to obtain more power, because power helps us survive and reproduce, all of our emotions are related to us getting what we want, which is what each individual percieves as more power. The emotions are as follows: 
 
@@ -106,30 +106,38 @@ The time used for time involving creations is to be the time at the start of the
 Power Value (pv) Calculating
 
 
-The power value calculating function has four parameters and looks like this in Common Lisp style: pv (actor receiver number from-highest-or-lowest). Includes a separate hash table for if-thens without actor or receiver, a separate hash table for all if-thens, and a separate hash table for complete actor/receiver chains with power values included. The function begins by searching for if-then-can/can’t data that matches the actor and receiver. For example, if the actor is Ryan Klaiber and the receiver is Ryan Klaiber, then the function searches for: If Ryan Klaiber … then Ryan Klaiber can/can’t, etc. The power value calculating function uses 1. basic searches and 2. forward and backward logic and searches to search for matching data at all stages of the power value calculation. The stages of the power value calculation are as follows: 
+The power value calculating function has two parameters and looks like this in Common Lisp style: pv (actor receiver). 
 
+Steps
 1. Search: if actors a (and/ors) then receivers can/can’t ____ (and/ors)
 2. If there is no match for #1, return null. 
-3. If there is a match for #1, search: actors can a (and/ors)
-4. If there is a match for #3, calculate a PV for #1. 
-5. If there is no match for #3, search: if actors z (and/ors) then actors can a (and/ors). 
-6. If there is no match for #5, return null.
-7. If there is a match for #5, search: actors can z (and/ors). 
-8. If there is a match for #7, combine with a as ordered procedure and calculate PV for #1.  
-9. If there is no match for # 7, loop #5 and then #7 until both are found. Replace a position variables with z position variables and search for new z position variable data during each loop. 
-10. For #5’s and similars in loops, search: if actors can a (and/ors) then receivers can/can’t ___ (and/ors). 
-11. For #7’s and similars in loops, search: if actors z (and/ors) then receivers can/can’t ___ (and/ors). 
-12. Search: if receivers can/cant’s (from #1, #10, and #11) then receivers can/can’t ___ (and/ors). 
-13. Delete overlaps. 
-14. Count # of cans. 
-15. Subtract # of can’ts.
+3. If there is a match for #1, push all matches to a pv list
+4. For the first list in the pv list, search: actors can a (and/ors)
+5. If there is a match for #4, calculate a PV for that list. 
+6. If there is no match for #5, search: if actors z (and/ors) then actors can a (and/ors). 
+7. If there is no match for #6, return null.
+8. If there is a match for #6, search: actors can z (and/ors). 
+9. If there is a match for #8, combine with a as ordered procedure and calculate PV for that list.  
+10. If there is no match for # 8, loop #6 and then #8 until both are found. Replace a position variables with z position variables and search for new z position variable data during each loop. 
+11. For #6’s and similars in loops, search: if actors can a (and/ors) then receivers can/can’t ___ (and/ors). 
+12. For #8’s and similars in loops, search: if actors z (and/ors) then receivers can/can’t ___ (and/ors). 
+13. Search: if receivers can/cant’s (from #1, #11, and #12) then receivers can/can’t ___ (and/ors). 
+14. Delete overlaps. 
+15. Count # of cans. 
+16. Subtract # of can’ts.
+17. Push the pv calculated for that list to that list in the pv list. 
+18. Loop #'s 4-17 until the end of the list. 
+
+
 (Expansion)*Leave trail marks for every search found and for every sentence used in a manipulative search. 
 
 
-Sorting and Showing (to be combined with power value calculating function)
+Sorting 
 
+Sorting has two parameters and looks like this in Common Lisp style: sort(number from-highest-or-lowest)
 
-Each final if-then sentence from the previous pv calculating steps will have a pv number associated with it and will be pushed to a separate pv list if the pv value associated with it is higher or lower (depending on parameter selected) than that of the pre-existing pv values within that list. The list, called the pv list, is limited to the number of power values designated in the 'number' parameter. If the pv value is higher or lower, it removes the highest or lowest rated entry in the list and adds the new sentence with pv to the list in its appropriate position. If the pv ties one on the list, the sentence should be positioned below or above the already existing entry in a newly created or updated subcategory of that pv rating, with all other equally rated entries in the same subcategory. If the lowest pv rating gets beat and has multiple entries in a subcategory, all entries with that same pv get removed. 
+1. Using the pv list non-destructively, sort the list in order of highest or lowest pv values (depending on which argument is used in the 'from-highest-or-lowest' parameter).
+2. Print the lists with the first 'number' (specified as the argument to the 'number parameter') pv's that are different from each other, beginning from the start of the list sorted in step #1. 
 
 *The same results should be produced given the same code, sources, and actor/receiver combination. 
 
