@@ -139,8 +139,6 @@ Sorting has two parameters and looks like this in Common Lisp style: sort(number
 1. Using the pv list non-destructively, sort the list in order of highest or lowest pv values (depending on which argument is used in the 'from-highest-or-lowest' parameter).
 2. Print the lists with the first 'number' (specified as the argument to the 'number parameter') pv's that are different from each other, beginning from the start of the list sorted in step #1. 
 
-*The same results should be produced given the same code, sources, and actor/receiver combination. 
-
 
 Expansions
 
@@ -156,6 +154,7 @@ Expansions
 9. Fading into oblivion - when the truth value of a sentence reaches a predetermined very small number, the sentence with that truth value attached to it is erased so that logic utilizing it does not proceed. 
 10. Abbreviation expansion determining for abbreviations with multiple expansions not found in the source - can determine which abbreviation expansion is appropriate by searching for key words highly related to one expansion, but not the other(s). 
 
+*The same results should be produced given the same code, sources, and actor/receiver combination. 
 
 
 
