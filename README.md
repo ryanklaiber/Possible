@@ -1,6 +1,16 @@
 # asinow
 
-The goal for this program is to have it compute the way to the most power for humans. Basic input processing (BIP) functions are run upon input. The rest of the functions, beginning with creation, are run separately when there has been deemed sufficient stored sentences in the hash tables. 
+The goal for this program is to have it compute the way to the most power for humans. Basic input processing (BIP) functions are run upon input. The rest of the functions, beginning with creation, are run separately when there has been deemed sufficient stored sentences in the hash tables. Sources to be input must be non-fiction literature.
+-The goal of humans, beknownst to them or not, is to get more power. This may not always be obvious because often times short term powers are rejected in favor of longer term powers. All living creatures have evolved that way. Power is one's abilities, whether or not they use those abilities is up to each individual. Each individual perceives power differently to some extent. As it is our primary evolved goal to obtain more power, because power helps us survive and reproduce, all of our emotions are related to us getting what we want, which is what each individual percieves as more power. The emotions are as follows: 
+
+We love what we want 
+We are happy when we get what we want 
+We are excited when we think the path to getting what we want is easy
+We are depressed when we think the path to getting what we want is difficult
+We are sad when we don’t get what we want
+We are angry when the path to getting what we want is increased in difficulty
+We are afraid of not getting what we want
+What is funny is when someone thinks something that is not true
 
 
 Basic Input Processing (Runs on Input)
@@ -46,6 +56,12 @@ Steps:
 6. (Purpose: Unification) Same meaning words, word-phrase combinations (ex. 'can' and 'is able to'), and phrases are unified. 
 -One word or phrase out of a set of same meaning words and phrases must be kept and the others are replaced with that one.
 
+6a. (Same meaning proper nouns unified) In sources that sometimes use full names and sometimes partial names (Ex. Trump, Donald Trump, Donald J Trump), the fullest name should be the one to replace the others. 
+
+6b. (Same meaning proper nouns unified) Name titles such as Mr., Mrs., Dr., etc. need to be dropped and how to match names with titles to names without titles is yet to be determined. The titles cannot just be dropped without an additional rule to match them with another proper noun. 
+
+6c. (Same meaning proper nouns unified) If sentences exist in the source that 'x is y' and 'x' and 'y' are both proper nouns, then a tally should be started of the frequency each proper noun is used within the source. The tally should be made on a separate proper nouns tally list. If there is already a tally on the proper nouns tally list of either of these proper nouns that have already been stored in the hash table, the tally from the source should be added to the tally on the proper nouns tally list. The proper noun with the higher use frequency should be replace the other. If the tally of one proper noun should ever overtake the tally of another, all proper nouns with the lower tally in the hash table should be replaced by the proper noun with the higher tally. All sentences 'x is y' should be kept in a separate lists - one list for if 'x' and 'y' are both proper nouns and another list for if 'y' is not a proper noun.     
+
 7. (Purpose: Unification) Unnecessary words are removed.
 -Ex. (Great white sharks can really swim fast) becomes (Great white sharks can swim fast). 
 
@@ -72,7 +88,7 @@ Creation
 
 1. Creation is through logic. Which sentences are created first must be handled correctly due to potential truth value alteration problems. Ex. If the sentences 'if a then b' and 'if b then c' exist, and if 'a' and 'b' have truth values, then 'b's' truth value would have to be updated from the 'if a then b' statement before b can be used to create/update c). Creation must begin with root sentences, which are sentences whose 'if' component cannot be created from logic. Ex. In the case that there exists an 'if b then c', then in order to be a root sentence there could be no 'if a then b'). After the first root sentences are used, then the 'b's' of the first root sentences are searched for to check if they are the 'ifs' of the second level root sentences. Second level root sentences do not consider first level root sentences. This pattern continues until no more root sentences of any level can be found. All other data must be part of circular logic (I think - check on in expansions) and cannot be used in the pv calculation. Upon creation at every level, truth values are created or updated. 
 
-2. When checking 'if a then b' by checking for T'a'?, if there exists a sentence in which the subject of 'a' is equal to 'x' and 'x' is not a proper noun, then T'a'? needs to also be checked for by replacing the subject of 'a' with 'x'.     
+2. When checking 'if a (is, can, or has) b then c' by checking for T'a'?, if there exists a sentence in which the subject 'a' is in set 'x' and 'x' is not a proper noun, then the truth of 'if a (is, can, or has) b' needs to also be checked for by replacing the subject 'a' with 'x'. Ex. if the sentences exist 'If dachsunds can bark then dachsunds can sing', since dachsunds are dogs, the truth of 'dogs can bark' should also be checked and the one with the higher truth value should be used. Lower level root sentences need to be calculated first as with all logic (see creation 1). The list of sentences in which 'x is y' and 'y' is not a proper noun should be checked in this step (see BIP 6c.). 
 
 3. For 'if abcd then e', if 'a', 'b', and 'c' are true, then 'if d then e' replaces if 'abcd then e'. The truth values for 'a', 'b', 'c', and 'if abcd then e' are multiplied together to get the if 'd then e' truth value. This assumes that there are no lower level root sentences at this point in creation that could create 'a', 'b', or 'c' (see creation rule 1).  
 If at any time during creation there exists multiple sentences that are the same, but have different truth values, the one with the higher truth value is the only one kept. Ex: 'if a then b' (tv = 50%) and 'if a then b' (tv = 40%). The second would be erased. 
