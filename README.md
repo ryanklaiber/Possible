@@ -1,6 +1,7 @@
 # asinow
 
 The goal for this program is to have it compute the way to the most power for humans. Basic input processing (BIP) functions are run upon input. The rest of the functions, beginning with creation, are run separately when there has been deemed sufficient stored sentences in the hash tables. Sources to be input must be non-fiction literature.
+
 -The goal of humans, beknownst to them or not, is to get more power. This may not always be obvious because often times short term powers are rejected in favor of longer term powers. All living creatures have evolved that way. Power is one's abilities, whether or not they use those abilities is up to each individual. Each individual perceives power differently to some extent. As it is our primary evolved goal to obtain more power, because power helps us survive and reproduce, all of our emotions are related to us getting what we want, which is what each individual percieves as more power. The emotions are as follows: 
 
 1. We love what we want 
@@ -34,11 +35,13 @@ Steps:
 1d. Two open parentheses need to be added to the beginning of the source, the open parentheses at the end of the source needs to be removed and a closed parentheses added in it's place, and the string needs to be completely converted into a list. Ex. 'Dogs can bark)(They really can)(' becomes ((Dogs can bark)(They really can)).  
 
 2. (Purpose: Independence) Interrogative sentences are removed. 
+
 -Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm. 
 
 2a. The last character of every list will be checked for a question mark character. If one is found, that list will be removed. Ex. ((Dogs bark)(Do they bark?)(They do bark)) becomes ((Dogs bark)(They do bark)).
 
 3. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed. 
+
 -Pronoun resolution is the process of matching a pronoun with the noun it is subsituting for. Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accurate, then it can be incorporated into this algorithm.  
 
 3a. Every list will be checked for any pronouns. If any pronoun is found within the list, the list will be removed. Ex. ((Dogs bark)(They do bark)) becomes ((Dogs bark)).
@@ -47,6 +50,7 @@ Steps:
 -Part of this includes all passive voice sentences being converted into active voice sentences. Ex. (Bones can be chewed on by dogs) becomes (Dogs can chew on bones). 
 
 5. (Purpose: Unification) Abbreviations are expanded.
+
 -Abbreviations need to be either expanded or expansions need to be abbreviated for unification purposes. Abbreviations in this algorithm will be expanded due to the presence of abbreviations with multiple different expansions. Ex. 'GM' can expand to 'general manager' or 'General Motors'. Abbreviations mostly include acronyms, contractions, initial abbreviations, and syllabic abbreviations. Without unification of abbreviations (NASA has spaceships) and (If The National Aeronautics and Space Administration has spaceships, then people can go into space) would not conclude that (people can go into space) during creation. Additionally, if the two lists (NASA has spaceships) and (The National Aeronautics and Space Administration) were stored, they would each have truth values of 1/1 instead of 2/2 for both if the lists were unified. 
 
 5a. Abbreviations with only one expansion are expanded.  
@@ -54,7 +58,7 @@ Steps:
 5b. Abbreviations with multiple expansions are expanded. An example of an abbreviation with multipole expansions is 'GM' which can expand to 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source').
 
 6. (Purpose: Unification) Same meaning words, word-phrase combinations (ex. 'can' and 'is able to'), and phrases are unified. 
--One word or phrase out of a set of same meaning words and phrases must be kept and the others are replaced with that one.
+Only one word or phrase out of a set of same meaning words and phrases is be kept and the others are replaced with that one.
 
 6a. (Same meaning proper nouns unified) In sources that sometimes use full names and sometimes partial names (Ex. Trump, Donald Trump, Donald J Trump), the fullest name should be the one to replace the others. 
 
@@ -80,6 +84,7 @@ Steps:
 8f. At the end of step 8, all sentences in the proper nouns sentence list are pushed back to the source BIP list. 
 
 9. The sentences must be stored appropriately in hash tables. Truth data is created/updated during storage. 
+
 -The subject is the hash entry key and the predicate is the entry. Source date/time, and other provided date/time provided is stored at the end of the sentence as a separate list along with truth values. This separate list is to exist at the end of all stored sentences and the order of all values in this separate list is to be the same for all stored sentences. 1 is added to any matching entry truth value numerator, contradictory entry truth value denominator. If the entry is unique, a truth value of 1/1 is created. A unique entry input on 8/19/2019 as 'Yesterday after lunch WHHS students were excited about studying.' would have an entry key as (Westchester Hebrew High School students) and a possible entry order as ((were excited about studying)(1/1 8.19.2019 8.18.2019 (after lunch))). As variables, the entry key would be (subject) and the entry might be ((predicate)(truth-value source-date/time sentence-event-date/time (relative-date/time))). 
 
 
@@ -88,20 +93,20 @@ Creation
 
 1. Creation is through logic. Which sentences are created first must be handled correctly due to potential truth value alteration problems. Ex. If the sentences 'if a then b' and 'if b then c' exist, and if 'a' and 'b' have truth values, then 'b's' truth value would have to be updated from the 'if a then b' statement before b can be used to create/update c). Creation must begin with root sentences, which are sentences whose 'if' component cannot be created from logic. Ex. In the case that there exists an 'if b then c', then in order to be a root sentence there could be no 'if a then b'). After the first root sentences are used, then the 'b's' of the first root sentences are searched for to check if they are the 'ifs' of the second level root sentences. Second level root sentences do not consider first level root sentences. This pattern continues until no more root sentences of any level can be found. All other data must be part of circular logic (I think - check on in expansions) and cannot be used in the pv calculation. Upon creation at every level, truth values are created or updated. 
 
-2. When checking 'if a (is, can, or has) b then c' by checking for T'a'?, if there exists a sentence in which the subject 'a' is in set 'x' and 'x' is not a proper noun, then the truth of 'if a (is, can, or has) b' needs to also be checked for by replacing the subject 'a' with 'x'. Ex. if the sentences exist 'If dachsunds can bark then dachsunds can sing', since dachsunds are dogs, the truth of 'dogs can bark' should also be checked and the one with the higher truth value should be used. Lower level root sentences need to be calculated first as with all logic (see creation 1). The list of sentences in which 'x is y' and 'y' is not a proper noun should be checked in this step (see BIP 6c.). 
+2. When checking 'if a (is, can, or has) b then c' by checking for the truth of 'a'?, if there exists a sentence in which the subject 'a' is in set 'x' and 'x' is not a proper noun, then the truth of 'if a (is, can, or has) b' needs to also be checked for by replacing the subject 'a' with 'x'. Ex. if the sentences exist 'If dachsunds can bark then dachsunds can sing', since dachsunds are dogs, the truth of 'dogs can bark' should also be checked and the one with the higher truth value should be used. Lower level root sentences need to be calculated first as with all logic (see creation 1). The list of sentences in which 'x is y' and 'y' is not a proper noun should be checked in this step (see BIP 6c.). 
 
 3. For 'if abcd then e', if 'a', 'b', and 'c' are true, then 'if d then e' replaces if 'abcd then e'. The truth values for 'a', 'b', 'c', and 'if abcd then e' are multiplied together to get the if 'd then e' truth value. This assumes that there are no lower level root sentences at this point in creation that could create 'a', 'b', or 'c' (see creation rule 1).  
 If at any time during creation there exists multiple sentences that are the same, but have different truth values, the one with the higher truth value is the only one kept. Ex: 'if a then b' (tv = 50%) and 'if a then b' (tv = 40%). The second would be erased. 
 
 The time used for time involving creations is to be the time at the start of the creation function.
+
 *Fading into oblivion expansion to be used during creation (See expansions below for more information about fading into oblivion)
 
 
 Power Value (pv) Calculating
 
 
-The power value calculating function has four parameters and looks like this in Common Lisp style: pv (actor receiver number from-highest-or-lowest). 
-Utilizes backwards receiver logic and forward actor logic in separate hash tables. Includes a separate hash table for if-thens without actor or receiver, a separate hash table for all if-thens, and a separate hash table for complete actor/receiver chains with power values included. The function begins by searching for if-then-can/can’t data that matches the actor and receiver. For example, if the actor is Ryan Klaiber and the receiver is Ryan Klaiber, then the function searches for: If Ryan Klaiber … then Ryan Klaiber can/can’t, etc. The power value calculating function uses 1. basic searches and 2. forward and backward logic and searches to search for matching data at all stages of the power value calculation. The stages of the power value calculation are as follows: 
+The power value calculating function has four parameters and looks like this in Common Lisp style: pv (actor receiver number from-highest-or-lowest). Includes a separate hash table for if-thens without actor or receiver, a separate hash table for all if-thens, and a separate hash table for complete actor/receiver chains with power values included. The function begins by searching for if-then-can/can’t data that matches the actor and receiver. For example, if the actor is Ryan Klaiber and the receiver is Ryan Klaiber, then the function searches for: If Ryan Klaiber … then Ryan Klaiber can/can’t, etc. The power value calculating function uses 1. basic searches and 2. forward and backward logic and searches to search for matching data at all stages of the power value calculation. The stages of the power value calculation are as follows: 
 
 1. Search: if actors a (and/ors) then receivers can/can’t ____ (and/ors)
 2. If there is no match for #1, return null. 
