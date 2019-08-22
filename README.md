@@ -34,56 +34,54 @@ Steps:
 
 1d. Two open parentheses need to be added to the beginning of the source, the open parentheses at the end of the source needs to be removed and a closed parentheses added in it's place, and the string needs to be completely converted into a list. Ex. 'Dogs can bark)(They really can)(' becomes ((Dogs can bark)(They really can)).  
 
-2. (Purpose: Independence) Interrogative sentences are removed. 
+2. (Purpose: Independence) Non-independent sentences are removed.  
 
--Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm. 
+2a. (Interrogative sentence removal) The last character of every list will be checked for a question mark character. If one is found, that list will be removed. Ex. ((Dogs bark)(Do they bark?)(They do bark)) becomes ((Dogs bark)(They do bark)).
 
-2a. The last character of every list will be checked for a question mark character. If one is found, that list will be removed. Ex. ((Dogs bark)(Do they bark?)(They do bark)) becomes ((Dogs bark)(They do bark)).
+-Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm.
 
-3. (Purpose: Independence) Sentences with pronouns that can’t be resolved are removed. 
+2b. (Sentences with unresolvable pronouns are removed) Every list will be checked for any pronouns. If any pronoun is found within the list, the list will be removed. Ex. ((Dogs bark)(They do bark)) becomes ((Dogs bark)).
 
 -Pronoun resolution is the process of matching a pronoun with the noun it is subsituting for. Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accurate, then it can be incorporated into this algorithm.  
 
-3a. Every list will be checked for any pronouns. If any pronoun is found within the list, the list will be removed. Ex. ((Dogs bark)(They do bark)) becomes ((Dogs bark)).
-
-4. (Purpose: Unification) Same meaning sentences with different sentence constuctions are conformed into the same sentence. 
+3. (Purpose: Unification) Same meaning sentences with different sentence constuctions are conformed into the same sentence. 
 -Part of this includes all passive voice sentences being converted into active voice sentences. Ex. (Bones can be chewed on by dogs) becomes (Dogs can chew on bones). 
 
-5. (Purpose: Unification) Abbreviations are expanded.
+4. (Purpose: Unification) Abbreviations are expanded.
 
 -Abbreviations need to be either expanded or expansions need to be abbreviated for unification purposes. Abbreviations in this algorithm will be expanded due to the presence of abbreviations with multiple different expansions. Ex. 'GM' can expand to 'general manager' or 'General Motors'. Abbreviations mostly include acronyms, contractions, initial abbreviations, and syllabic abbreviations. Without unification of abbreviations (NASA has spaceships) and (If The National Aeronautics and Space Administration has spaceships, then people can go into space) would not conclude that (people can go into space) during creation. Additionally, if the two lists (NASA has spaceships) and (The National Aeronautics and Space Administration) were stored, they would each have truth values of 1/1 instead of 2/2 for both if the lists were unified. 
 
-5a. Abbreviations with only one expansion are expanded.  
+4a. Abbreviations with only one expansion are expanded.  
 
-5b. Abbreviations with multiple expansions are expanded. An example of an abbreviation with multipole expansions is 'GM' which can expand to 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source').
+4b. Abbreviations with multiple expansions are expanded. An example of an abbreviation with multipole expansions is 'GM' which can expand to 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source').
 
-6. (Purpose: Unification) Same meaning words, word-phrase combinations (ex. 'can' and 'is able to'), and phrases are unified. 
+5. (Purpose: Unification) Same meaning words, word-phrase combinations (ex. 'can' and 'is able to'), and phrases are unified. 
 Only one word or phrase out of a set of same meaning words and phrases is be kept and the others are replaced with that one.
 
-6a. (Same meaning proper nouns unified) In sources that sometimes use full names and sometimes partial names (Ex. Trump, Donald Trump, Donald J Trump), the fullest name should be the one to replace the others. 
+5a. (Same meaning proper nouns unified) In sources that sometimes use full names and sometimes partial names (Ex. Trump, Donald Trump, Donald J Trump), the fullest name should be the one to replace the others. 
 
-6b. (Same meaning proper nouns unified) Name titles such as Mr., Mrs., Dr., etc. need to be dropped and how to match names with titles to names without titles is yet to be determined. The titles cannot just be dropped without an additional rule to match them with another proper noun. 
+5b. (Same meaning proper nouns unified) Name titles such as Mr., Mrs., Dr., etc. need to be dropped and how to match names with titles to names without titles is yet to be determined. The titles cannot just be dropped without an additional rule to match them with another proper noun. 
 
-6c. (Same meaning proper nouns unified) If sentences exist in the source that 'x is y' and 'x' and 'y' are both proper nouns, then a tally should be started of the frequency each proper noun is used within the source. The tally should be made on a separate proper nouns tally list. If there is already a tally on the proper nouns tally list of either of these proper nouns that have already been stored in the hash table, the tally from the source should be added to the tally on the proper nouns tally list. The proper noun with the higher use frequency should be replace the other. If the tally of one proper noun should ever overtake the tally of another, all proper nouns with the lower tally in the hash table should be replaced by the proper noun with the higher tally. All sentences 'x is y' should be kept in a separate lists - one list for if 'x' and 'y' are both proper nouns and another list for if 'y' is not a proper noun.     
+5c. (Same meaning proper nouns unified) If sentences exist in the source that 'x is y' and 'x' and 'y' are both proper nouns, then a tally should be started of the frequency each proper noun is used within the source. The tally should be made on a separate proper nouns tally list. If there is already a tally on the proper nouns tally list of either of these proper nouns that have already been stored in the hash table, the tally from the source should be added to the tally on the proper nouns tally list. The proper noun with the higher use frequency should be replace the other. If the tally of one proper noun should ever overtake the tally of another, all proper nouns with the lower tally in the hash table should be replaced by the proper noun with the higher tally. All sentences 'x is y' should be kept in a separate lists - one list for if 'x' and 'y' are both proper nouns and another list for if 'y' is not a proper noun.     
 
-7. (Purpose: Unification) Unnecessary words are removed.
+6. (Purpose: Unification) Unnecessary words are removed.
 -Ex. (Great white sharks can really swim fast) becomes (Great white sharks can swim fast). 
 
-8. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number (Ex. Ryan Klaiber (1), Ryan Klaiber (2)) 
+7. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number (Ex. Ryan Klaiber (1), Ryan Klaiber (2)) 
 
-8a. Every sentence with a proper noun is pushed to a separate list after being formatted in previous steps (steps 1-7). This list will be referred to as the proper nouns sentence list.
+7a. Every sentence with a proper noun is pushed to a separate list after being formatted in previous steps (steps 1-6). This list will be referred to as the proper nouns sentence list.
 
-8b. (proper noun contradictions within the source) Matches and contradictions for each sentence in the proper nouns sentence list are searched for, searching within the proper nouns sentence list itself. If a sufficiently deemed percent of the sentences are contradictory, the proper nouns are renamed. Ex. Ryan Klaiber (1), Ryan Klaiber (2). An unlimited number of different proper noun names can be given within a single source. All of the sentences that include the same proper noun will make up a proper noun group. 
+7b. (proper noun contradictions within the source) Matches and contradictions for each sentence in the proper nouns sentence list are searched for, searching within the proper nouns sentence list itself. If a sufficiently deemed percent of the sentences are contradictory, the proper nouns are renamed. Ex. Ryan Klaiber (1), Ryan Klaiber (2). An unlimited number of different proper noun names can be given within a single source. All of the sentences that include the same proper noun will make up a proper noun group. 
 
-8c. (proper noun group matches within the hash table) Matches and contradictions for each proper noun group from the proper nouns sentence list are searched for, searching within the hash table of sentences previously fully formatted and stored. Each proper noun group will take the name of any other previosly stored proper noun group if a sufficiently deemed percent of the sentences within that stored proper noun group are matching.
+7c. (proper noun group matches within the hash table) Matches and contradictions for each proper noun group from the proper nouns sentence list are searched for, searching within the hash table of sentences previously fully formatted and stored. Each proper noun group will take the name of any other previosly stored proper noun group if a sufficiently deemed percent of the sentences within that stored proper noun group are matching.
 
-8d. (proper noun group contradictions within the hash table) If a sufficiently deemed percent of source proper noun group sentences are contradictory to all other stored proper noun group sentences, the proper nouns in that source proper noun group are renamed with the current highest number of the proper noun + 1. 
+7d. (proper noun group contradictions within the hash table) If a sufficiently deemed percent of source proper noun group sentences are contradictory to all other stored proper noun group sentences, the proper nouns in that source proper noun group are renamed with the current highest number of the proper noun + 1. 
 
-8e. (no contradictions within the source and hash table and no matches within the hash table) If no contradictions are found while searching within the proper nouns sentence list itself, and no matches or contradictions are found while searching within the hash table of sentences previously fully formatted and stored, the proper noun is not renamed. 
+7e. (no contradictions within the source and hash table and no matches within the hash table) If no contradictions are found while searching within the proper nouns sentence list itself, and no matches or contradictions are found while searching within the hash table of sentences previously fully formatted and stored, the proper noun is not renamed. 
 
-8f. At the end of step 8, all sentences in the proper nouns sentence list are pushed back to the source BIP list. 
+7f. At the end of step 8, all sentences in the proper nouns sentence list are pushed back to the source BIP list. 
 
-9. The sentences must be stored appropriately in hash tables. Truth data is created/updated during storage. 
+8. The sentences must be stored appropriately in hash tables. Truth data is created/updated during storage. 
 
 -The subject is the hash entry key and the predicate is the entry. Source date/time, and other provided date/time provided is stored at the end of the sentence as a separate list along with truth values. This separate list is to exist at the end of all stored sentences and the order of all values in this separate list is to be the same for all stored sentences. 1 is added to any matching entry truth value numerator, contradictory entry truth value denominator. If the entry is unique, a truth value of 1/1 is created. A unique entry input on 8/19/2019 as 'Yesterday after lunch WHHS students were excited about studying.' would have an entry key as (Westchester Hebrew High School students) and a possible entry order as ((were excited about studying)(1/1 8.19.2019 8.18.2019 (after lunch))). As variables, the entry key would be (subject) and the entry might be ((predicate)(truth-value source-date/time sentence-event-date/time (relative-date/time))). 
 
