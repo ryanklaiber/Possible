@@ -126,7 +126,7 @@ Steps
 15. Count # of cans. 
 16. Subtract # of can’ts.
 17. Push the pv calculated for that list to that list in the pv list. 
-18. Loop #'s 4-17 until the end of the list. 
+18. Loop #'s 4-17 until the end of the pv list. 
 
 
 (Expansion)*Leave trail marks for every search found and for every sentence used in a manipulative search. 
