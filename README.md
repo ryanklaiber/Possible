@@ -20,8 +20,6 @@ Basic Input Processing (Runs on Input)
 Terms:
 1. (Purpose: Independence) Making sentences independent in this algorithm means making them so that the information held within them can be fully understood without needing the information within any other sentences. 
 
-2. (Purpose: Unification) Unificaiton in this algorithm is taking different sentences that carry the same information and conforming them into the same sentence. Doing this is beneficial to truth value calculating, creation, and power value calculating. 
-
 Steps: 
 1. (Purpose: Lisp Formatting) Every sentence needs to be turned into a list of words.
 
@@ -42,30 +40,34 @@ Steps:
 
 2b. (Sentences with unresolvable pronouns are removed) Every list will be checked for any pronouns. If any pronoun is found within the list, the list will be removed. Ex. ((Dogs bark)(They do bark)) becomes ((Dogs bark)).
 
--Pronoun resolution is the process of matching a pronoun with the noun it is subsituting for. Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accurate, then it can be incorporated into this algorithm.  
+-Pronoun resolution is the process of matching a pronoun with the noun it is subsituting for. Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accurate, then it can be incorporated into this algorithm. 
 
-3.1. (Purpose: Unification) Same meaning sentences with different sentence constuctions are conformed into the same sentence. 
+3. (Purpose: Unification) Unificaiton in this algorithm is taking different sentences that carry the same information and conforming them into the same sentence. Doing this is beneficial to truth value calculating, creation, and power value calculating. 
+
+3.1. (Purpose: Unification) Unnecessary words are removed.
+-Ex. (Great white sharks can really swim fast) becomes (Great white sharks can swim fast). 
+
+3.2. (Purpose: Unification) Same meaning words, word-phrase combinations (ex. 'can' and 'is able to'), and phrases are unified (proper nouns to be unified in step 3.5). 
+Only one word or phrase out of a set of same meaning words and phrases is be kept and the others are replaced with that one.
+
+3.3. (Purpose: Unification) Same meaning sentences with different sentence constuctions are conformed into the same sentence. 
 -Part of this includes all passive voice sentences being converted into active voice sentences. Ex. (Bones can be chewed on by dogs) becomes (Dogs can chew on bones). 
 
-3.2. (Purpose: Unification) Abbreviations are expanded.
+3.4. (Purpose: Unification) Abbreviations are expanded.
 
 -Abbreviations need to be either expanded or expansions need to be abbreviated for unification purposes. Abbreviations in this algorithm will be expanded due to the presence of abbreviations with multiple different expansions. Ex. 'GM' can expand to 'general manager' or 'General Motors'. Abbreviations mostly include acronyms, contractions, initial abbreviations, and syllabic abbreviations. Without unification of abbreviations (NASA has spaceships) and (If The National Aeronautics and Space Administration has spaceships, then people can go into space) would not conclude that (people can go into space) during creation. Additionally, if the two lists (NASA has spaceships) and (The National Aeronautics and Space Administration) were stored, they would each have truth values of 1/1 instead of 2/2 for both if the lists were unified. 
 
-3.2a. Abbreviations with only one expansion are expanded.  
+3.4a. Abbreviations with only one expansion are expanded.  
 
-3.2b. Abbreviations with multiple expansions are expanded. An example of an abbreviation with multipole expansions is 'GM' which can expand to 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source').
+3.4b. Abbreviations with multiple expansions are expanded. An example of an abbreviation with multipole expansions is 'GM' which can expand to 'general manager' or 'General Motors'. The way the algorithm will figure out which expansion the abbreviation should expand to is by searching the source for all of the possible expansions. If one of the expansions can be found and not the other(s), then the expansion found will be the one expanded to. If more than one expansion is found, an additional algorithm expansion will be required for how to handle this. If none of the expansions are found, then the sentences will not currently be utilized (see algorithm 'Abbreviation expansion determining for abbreviations with multiple expansions not found in the source').
 
-3.3. (Purpose: Unification) Same meaning words, word-phrase combinations (ex. 'can' and 'is able to'), and phrases are unified. 
-Only one word or phrase out of a set of same meaning words and phrases is be kept and the others are replaced with that one.
+3.5. (Purpose: Unification) Same meaning proper nouns are unified.
 
-3.3a. (Same meaning proper nouns unified) In sources that sometimes use full names and sometimes partial names (Ex. Trump, Donald Trump, Donald J Trump), the fullest name should be the one to replace the others. 
+3.5a. (Same meaning proper nouns unified) In sources that sometimes use full names and sometimes partial names (Ex. Trump, Donald Trump, Donald J Trump), the fullest name should be the one to replace the others. 
 
-3.3b. (Same meaning proper nouns unified) Name titles such as Mr., Mrs., Dr., etc. need to be dropped and how to match names with titles to names without titles is yet to be determined. The titles cannot just be dropped without an additional rule to match them with another proper noun. 
+3.5b. (Same meaning proper nouns unified) Name titles such as Mr., Mrs., Dr., etc. need to be dropped and how to match names with titles to names without titles is yet to be determined. The titles cannot just be dropped without an additional rule to match them with another proper noun. 
 
-3.3c. (Same meaning proper nouns unified) If sentences exist in the source that 'x is y' and 'x' and 'y' are both proper nouns, then a tally should be started of the frequency each proper noun is used within the source. The tally should be made on a separate proper nouns tally list. If there is already a tally on the proper nouns tally list of either of these proper nouns that have already been stored in the hash table, the tally from the source should be added to the tally on the proper nouns tally list. The proper noun with the higher use frequency should be replace the other. If the tally of one proper noun should ever overtake the tally of another, all proper nouns with the lower tally in the hash table should be replaced by the proper noun with the higher tally. All sentences 'x is y' should be kept in a separate lists - one list for if 'x' and 'y' are both proper nouns and another list for if 'y' is not a proper noun.     
-
-3.4. (Purpose: Unification) Unnecessary words are removed.
--Ex. (Great white sharks can really swim fast) becomes (Great white sharks can swim fast). 
+3.5c. (Same meaning proper nouns unified) If sentences exist in the source that 'x is y' and 'x' and 'y' are both proper nouns, then a tally should be started of the frequency each proper noun is used within the source. The tally should be made on a separate proper nouns tally list. If there is already a tally on the proper nouns tally list of either of these proper nouns that have already been stored in the hash table, the tally from the source should be added to the tally on the proper nouns tally list. The proper noun with the higher use frequency should be replace the other. If the tally of one proper noun should ever overtake the tally of another, all proper nouns with the lower tally in the hash table should be replaced by the proper noun with the higher tally. All sentences 'x is y' should be kept in a separate lists - one list for if 'x' and 'y' are both proper nouns and another list for if 'y' is not a proper noun.     
 
 4. (Purpose: Independence) Multiple same name proper nouns are to be renamed including a number (Ex. Ryan Klaiber (1), Ryan Klaiber (2)) 
 
