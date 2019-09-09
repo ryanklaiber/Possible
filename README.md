@@ -23,14 +23,11 @@ Terms:
 Steps: 
 1. (Purpose: Lisp Formatting) Every sentence needs to be turned into a list of words.
 
-1a. As a string, periods and exclamation points and their following space need to be replaced with only a period. Ex. 'Dogs can bark! They really can.' becomes 'Dogs can bark.They really can.' 
+1a. As a string, periods and exclamation points and their following space need to be replaced with a closed parentheses followed an open parentheses. Ex. 'Dogs can bark! They really can.' becomes 'Dogs can bark)(They really can)('
 
-1b. Question marks and their following spaces need to be replaced with a question mark followed by a period. Ex.\
-'Can dogs bark? They really can.' becomes 'Can dogs bark?.They really can.' This will allow for their later removal.  
+1b. Question marks and their following spaces need to be replaced with a question mark followed by a closed parentheses followed an open parentheses Ex.'Can dogs bark? They really can.' becomes 'Can dogs bark?)(They really can)(' This will allow for their later removal.  
 
-1c. Periods need to be replaced with a closed parentheses followed an open parentheses. Ex. 'Dogs can bark.They really can.' becomes 'Dogs can bark)(They really can)('
-
-1d. Two open parentheses need to be added to the beginning of the source, the open parentheses at the end of the source needs to be removed and a closed parentheses added in it's place, and the string needs to be completely converted into a list. Ex. 'Dogs can bark)(They really can)(' becomes ((Dogs can bark)(They really can)).  
+1c. Two open parentheses need to be added to the beginning of the source, the open parentheses at the end of the source needs to be removed and a closed parentheses added in it's place, and the string needs to be completely converted into a list. Ex. 'Dogs can bark)(They really can)(' becomes ((Dogs can bark)(They really can)).  
 
 2. (Purpose: Independence) Non-independent sentences are removed.  
 
