@@ -38,7 +38,9 @@ Steps:
 
 -Interrogative sentences don't provide information that can be utilized in this algorithm. If the questions were to be answered    in following sentences, then information useful for this algorithm could be utilized, but for similar reasons as pronoun resolution, matching interrogative sentences with their answers has too low of an accuracy for the purposes of this algorithm.
 
-2b. (Sentences with unresolvable pronouns are removed) Every list will be checked for any pronouns. If any pronoun is found within the list, the list will be removed. Ex. ((Dogs bark)(They do bark)) becomes ((Dogs bark)).
+2b. (Imperitive sentence removal) If the first word of the sentence is an imperitive verb, the sentence should be removed. 
+
+2c. (Sentences with unresolvable pronouns are removed) Every list will be checked for any pronouns. If any pronoun is found within the list, the list will be removed. Ex. ((Dogs bark)(They do bark)) becomes ((Dogs bark)).
 
 -Pronoun resolution is the process of matching a pronoun with the noun it is subsituting for. Current pronoun resolution is not 100% accurate and 100% accuracy is highly preferable for this algorithm. When pronoun resolution becomes 100% accurate, then it can be incorporated into this algorithm. 
 
