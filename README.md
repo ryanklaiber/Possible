@@ -1,4 +1,4 @@
-# asinow
+# chris
 
 The goal for this program is to have it compute the way to the most power for humans. Basic input processing (BIP) functions are run upon input. The rest of the functions (logical creation, power value calculating, and sorting) are run separately when there has been deemed sufficient stored sentences in the hash tables. Sources to be input must be non-fiction literature.
 
