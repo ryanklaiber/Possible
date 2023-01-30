@@ -1,19 +1,3 @@
-# chris
-
-The goal for this program is to have it compute the way to the most power for humans. Basic input processing (BIP) functions are run upon input. The rest of the functions (logical creation, power value calculating, and sorting) are run separately when there has been deemed sufficient stored sentences in the hash tables. Sources to be input must be non-fiction literature.
-
--The goal of humans, beknownst to them or not, is to get more power. This may not always be obvious because often times short term powers are rejected in favor of longer term powers. All living creatures have evolved that way. Power is one's abilities, whether or not they use those abilities is up to each individual. Each individual perceives power differently to some extent. As it is our primary evolved goal to obtain more power, because power helps us survive and reproduce, all of our emotions are related to us getting what we want, which is what each individual percieves as more power. The emotions are as follows: 
-
-1. We love what we want 
-2. We are happy when we get what we want 
-3. We are excited when we think we will get what we want
-4. We are depressed when we think we wont get what we want
-5. We are sad when we don’t get what we want
-6. We are angry when the path to getting what we want is increased in difficulty
-7. We are afraid of not getting what we want
-8. What is funny is when someone thinks something that is not true
-
-
 Basic Input Processing (Runs on Input)
 
 
